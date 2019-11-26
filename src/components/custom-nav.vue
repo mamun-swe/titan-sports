@@ -1,5 +1,6 @@
 <template>
   <div class="custom-nav">
+    <!-- Top nav -->
     <div class="custom-top-nav text-center border-bottom">
       <a target="_blank" href>
         <i class="fab fa-facebook-square"></i>
@@ -11,7 +12,7 @@
         <i class="fab fa-discord"></i>
       </a>
     </div>
-
+    <!-- Desktop nav -->
     <div class="desktop-nav d-none d-lg-block border-bottom text-center" id="myNav">
       <div class="d-flex justify-content-center">
         <div class="pt-3">
@@ -26,18 +27,43 @@
         </div>
         <div class="pt-3">
           <router-link to="/">registration</router-link>
-          <router-link to="/">login</router-link>
           <router-link to="/">contact</router-link>
         </div>
       </div>
     </div>
-    <div class="mobile-nav d-block d-lg-none border-bottom"></div>
+    <!-- Mobile nav -->
+    <div class="mobile-nav d-block d-lg-none border-bottom">
+      <div class="d-flex px-3">
+        <div>
+          <i class="fas fa-bars bars" v-on:click="openMenu" v-show="bars"></i>
+          <i class="fas fa-times" v-on:click="closeMenu" v-show="close"></i>
+        </div>
+        <div class="ml-auto">
+          <img src="../assets/static/logo.png" class="img-fluid" />
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-menu d-block d-lg-none" ref="mobileMenu">
+      <router-link to="/home">Home</router-link>
+      <router-link to="/">about</router-link>
+      <router-link to="/">team</router-link>
+      <router-link to="/">registration</router-link>
+      <router-link to="/">contact</router-link>
+    </div>
+
     <div class="break"></div>
   </div>
 </template>
 <script>
 export default {
   name: "custom-nav",
+  data() {
+    return {
+      bars: true,
+      close: false
+    };
+  },
   mounted() {
     window.addEventListener("scroll", () => {
       var header = document.getElementById("myNav");
@@ -48,6 +74,19 @@ export default {
         header.classList.remove("sticky");
       }
     });
+    this.$refs.mobileMenu.style.top = "-100%";
+  },
+  methods: {
+    openMenu() {
+      this.bars = false;
+      this.close = true;
+      this.$refs.mobileMenu.style.top = "88px";
+    },
+    closeMenu() {
+      this.close = false;
+      this.bars = true;
+      this.$refs.mobileMenu.style.top = "-100%";
+    }
   }
 };
 </script>
@@ -130,13 +169,49 @@ export default {
     top: 0;
   }
   .mobile-nav {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     width: 100%;
+    height: 47px;
     z-index: 3;
     background: #ffffff;
     position: fixed;
     top: 41px;
+    i {
+      cursor: pointer;
+      font-size: 22px;
+      padding-top: 4px;
+      transition: 0.9s;
+    }
+    img {
+      height: 28px;
+    }
+  }
+  .mobile-menu {
+    position: fixed;
+    top: 88px;
+    width: 100%;
+    height: auto;
+    left: 0;
+    background: #ffffff;
+    z-index: 2;
+    transition: 0.9s;
+    a {
+      width: 100%;
+      padding: 10px 15px;
+      display: block;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: 900;
+      color: #726e6e;
+      text-decoration: none;
+      transition: 0.3s;
+      font-family: "Kanit", sans-serif;
+      border-bottom: 1px solid #726e6e28;
+    }
+    .router-link-exact-active {
+      color: #d33b4b;
+    }
   }
   .break {
     height: 83px;
