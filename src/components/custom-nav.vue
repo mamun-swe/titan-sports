@@ -138,10 +138,10 @@ export default {
       font-family: "Kanit", sans-serif;
     }
     a:hover {
-      color: #d33b4b;
+      color: #f87800;
     }
     .router-link-exact-active {
-      color: #d33b4b;
+      color: #f87800;
     }
     img {
       height: 60px;
@@ -211,7 +211,7 @@ export default {
       border-bottom: 1px solid #726e6e28;
     }
     .router-link-exact-active {
-      color: #d33b4b;
+      color: #f87800;
     }
   }
   .break {

@@ -10,7 +10,7 @@
       clickable="false"
     >
       <slide v-for="(slide, i) in slides" :index="i" :key="i">
-        <img src="../../assets/sliders/slider.jpg" class="img-fluid" />
+        <img src="../../assets/sliders/team.png" class="img-fluid" />
       </slide>
     </carousel-3d>
 
@@ -44,21 +44,79 @@
       </div>
     </div>
 
-  <!-- Latest News -->
-  <div class="latest-news">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-body">
-              <h6 class="mb-0 damn-color"><i class="fas fa-caret-right mr-3 danger-color"></i>Latest News</h6>
+    <!-- Latest News -->
+    <div class="latest-news">
+      <div class="container">
+        <div class="row mb-3">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="mb-0 damn-color">
+                  <i class="fas fa-caret-right mr-3 danger-color"></i>Latest News
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="news-card">
+              <img src="../../assets/team/team1.jpg" class="img-fluid" />
+              <div class="custom-overlay">
+                <div class="content">
+                  <h5>Team abcd win all over in asia</h5>
+                  <p class="mb-0">30 Nov 2020</p>
+                </div>
+              </div>
+            </div>
+            <div class="news-card">
+              <img src="../../assets/team/team2.jpg" class="img-fluid" />
+              <div class="custom-overlay">
+                <div class="content">
+                  <h5>Team abcd win all over in asia</h5>
+                  <p class="mb-0">30 Nov 2020</p>
+                </div>
+              </div>
+            </div>
+            <div class="news-card">
+              <img src="../../assets/team/team3.jpg" class="img-fluid" />
+              <div class="custom-overlay">
+                <div class="content">
+                  <h5>Team abcd win all over in asia</h5>
+                  <p class="mb-0">30 Nov 2020</p>
+                </div>
+              </div>
+            </div>
+            <div class="news-card">
+              <img src="../../assets/team/team4.jpg" class="img-fluid" />
+              <div class="custom-overlay">
+                <div class="content">
+                  <h5>Team abcd win all over in asia</h5>
+                  <p class="mb-0">30 Nov 2020</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
+    <!-- Team -->
+    <div class="team">
+      <div class="container">
+        <div class="row mb-3">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="mb-0 damn-color">
+                  <i class="fas fa-caret-right mr-3 danger-color"></i>Team
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -137,7 +195,7 @@ export default {
         transition: 0.3s;
       }
       i:hover {
-        color: #d33b4b;
+        color: #f87800;
       }
       .leftIcon {
         position: absolute;
@@ -155,24 +213,99 @@ export default {
   }
 
   // News
-  .latest-news{
-    h6{
-      font-family: "Kanit", sans-serif;
+  .latest-news {
+    .card {
+      h6 {
+        font-family: "Kanit", sans-serif;
+      }
+    }
+    .news-card {
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      img {
+        width: 100%;
+        min-height: 100%;
+        transition: 0.3s;
+      }
+      .custom-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgb(2, 0, 36);
+        background: linear-gradient(
+          90deg,
+          rgba(2, 0, 36, 0.7777311608237045) 0%,
+          rgba(58, 58, 65, 0.5704482476584384) 51%
+        );
+        .content {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          padding: 15px;
+          h5 {
+            color: #ffffff;
+            font-family: "Kanit", sans-serif;
+            margin-bottom: 0;
+            transition: 0.3s;
+          }
+          p {
+            color: #ffffff;
+            font-size: 15px;
+            font-family: "Kanit", sans-serif;
+          }
+        }
+      }
+    }
+    .news-card:hover img {
+      transform: scale(1.2);
+    }
+    .news-card:hover .custom-overlay .content h5 {
+      color: #f87800;
+    }
+  }
+
+  // Team
+  .team {
+    margin-top: 10px;
+    .card {
+      h6 {
+        font-family: "Kanit", sans-serif;
+      }
     }
   }
 }
 
-
-
-@media(max-width: 992px){
-  .latest-news{
+@media (max-width: 768px) {
+  .latest-news {
     margin-top: 50px;
+    .news-card {
+      width: 100%;
+      height: 250px;
+    }
   }
 }
 
-@media(min-width: 992px){
-  .latest-news{
+@media (min-width: 768px) {
+  .latest-news {
     margin-top: 100px;
+    .news-card {
+      width: 50%;
+      height: 270px;
+      display: inline-block;
+      margin-top: -7px;
+    }
+  }
+}
+@media (min-width: 992px) {
+  .latest-news {
+    .news-card {
+      height: 350px;
+    }
   }
 }
 </style>

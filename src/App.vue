@@ -9,6 +9,6 @@
   color: #726e6e;
 }
 .danger-color{
-  color: #d33b4b;
+  color: #f87800;
 }
 </style>
