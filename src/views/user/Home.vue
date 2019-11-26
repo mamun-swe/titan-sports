@@ -43,6 +43,22 @@
         </div>
       </div>
     </div>
+
+  <!-- Latest News -->
+  <div class="latest-news">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h6 class="mb-0 damn-color"><i class="fas fa-caret-right mr-3 danger-color"></i>Latest News</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   </div>
 </template>
 
@@ -108,7 +124,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .home {
-  height: 3500px;
   .sponsored-company {
     .col-12 {
       height: 55px;
@@ -137,6 +152,27 @@ export default {
         padding: 5px;
       }
     }
+  }
+
+  // News
+  .latest-news{
+    h6{
+      font-family: "Kanit", sans-serif;
+    }
+  }
+}
+
+
+
+@media(max-width: 992px){
+  .latest-news{
+    margin-top: 50px;
+  }
+}
+
+@media(min-width: 992px){
+  .latest-news{
+    margin-top: 100px;
   }
 }
 </style>

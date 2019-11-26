@@ -28,6 +28,7 @@
         <div class="pt-3">
           <router-link to="/">registration</router-link>
           <router-link to="/">contact</router-link>
+          <router-link to="/">sponsored</router-link>
         </div>
       </div>
     </div>
@@ -50,6 +51,7 @@
       <router-link to="/">team</router-link>
       <router-link to="/">registration</router-link>
       <router-link to="/">contact</router-link>
+      <router-link to="/">sponsored</router-link>
     </div>
 
     <div class="break"></div>
@@ -91,7 +93,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css?family=Kanit&display=swap");
 .custom-nav {
   .custom-top-nav {
     padding-top: 10px;
