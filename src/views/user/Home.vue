@@ -115,6 +115,45 @@
             </div>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-12 col-sm-6 col-lg-4 team-column" v-for="(team, i) in teams" :key="i">
+            <div class="card">
+              <img src="../../assets/team/team1.jpg" class="card-img" />
+              <div class="custom-team-overlay">
+                <div class="content text-center">
+                  <button type="button" class="btn rounded-0 shadow-none px-4">View team</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Strimng -->
+    <div class="striming">
+      <div class="container">
+        <div class="row mb-3">
+          <div class="col-12 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h6 class="mb-0 damn-color">
+                  <i class="fas fa-caret-right mr-3 danger-color"></i>Striming
+                </h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe
+                class="embed-responsive-item"
+                src="https://www.youtube-nocookie.com/embed/URBy9t6e8rY"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -133,6 +172,7 @@ export default {
   data() {
     return {
       slides: [],
+      teams: [],
       slickOptions: {
         slidesToShow: 4,
         slidesToScroll: 4,
@@ -168,6 +208,9 @@ export default {
   mounted() {
     for (var i = 0; i < 6; i++) {
       this.slides = i;
+    }
+    for (var x = 0; x < 10; x++) {
+      this.teams = x;
     }
   },
   methods: {
@@ -272,6 +315,62 @@ export default {
   // Team
   .team {
     margin-top: 10px;
+    .card {
+      h6 {
+        font-family: "Kanit", sans-serif;
+      }
+    }
+    .team-column {
+      margin-bottom: 32px;
+      .card {
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+        border-radius: 8px;
+        border: 0;
+        img {
+          min-height: 100%;
+        }
+        .custom-team-overlay {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 100%;
+          transition: 0.3s;
+          background: rgb(2, 0, 36);
+          background: linear-gradient(
+            90deg,
+            rgba(2, 0, 36, 0.7777311608237045) 0%,
+            rgba(58, 58, 65, 0.5704482476584384) 51%
+          );
+          .content {
+            margin-top: 80px;
+            margin-right: -180%;
+            transition: 0.5s;
+            .btn {
+              font-size: 15px;
+              color: #ffffff;
+              border: 2px solid #ffffff;
+              font-family: "Kanit", sans-serif;
+              transition: 0.3s;
+              background: #ffffff36;
+            }
+            .btn:hover {
+              color: #f87800;
+              background: #ffffff;
+            }
+          }
+        }
+      }
+      .card:hover .custom-team-overlay .content {
+        margin-right: 0%;
+      }
+    }
+  }
+
+  // Striming
+  .striming {
     .card {
       h6 {
         font-family: "Kanit", sans-serif;

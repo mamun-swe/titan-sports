@@ -11,6 +11,9 @@
       <a target="_blank" href>
         <i class="fab fa-discord"></i>
       </a>
+      <a target="_blank" href>
+        <i class="fab fa-youtube"></i>
+      </a>
     </div>
     <!-- Desktop nav -->
     <div class="desktop-nav d-none d-lg-block border-bottom text-center" id="myNav">
@@ -115,6 +118,9 @@ export default {
       }
       .fa-discord:hover {
         color: #7289da;
+      }
+      .fa-youtube:hover{
+        color: #ff0000;
       }
     }
   }
