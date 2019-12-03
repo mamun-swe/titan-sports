@@ -122,7 +122,11 @@
               <img src="../../assets/team/team1.jpg" class="card-img" />
               <div class="custom-team-overlay">
                 <div class="content text-center">
-                  <button type="button" class="btn rounded-0 shadow-none px-4">View team</button>
+                  <button
+                    type="button"
+                    class="btn rounded-0 shadow-none px-4"
+                    v-on:click="openTeam(team)"
+                  >View team</button>
                 </div>
               </div>
             </div>
@@ -219,6 +223,9 @@ export default {
     },
     prev() {
       this.$refs.slick.prev();
+    },
+    openTeam(team) {
+      this.$router.push({ path: "/team/" + team });
     }
   }
 };
@@ -242,7 +249,7 @@ export default {
         color: #f8780081;
         transition: 0.3s;
       }
-      i:hover{
+      i:hover {
         color: #f87800;
       }
       .leftIcon {

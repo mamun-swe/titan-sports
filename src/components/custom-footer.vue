@@ -10,7 +10,8 @@
           <h6>Links</h6>
           <router-link to="/home">home</router-link>
           <router-link to="/">about</router-link>
-          <router-link to="/">team</router-link>
+          <router-link to="/team">team</router-link>
+          <router-link to="/news">news</router-link>
           <router-link to="/contact">contact</router-link>
           <router-link to="/sponsored">sponsored</router-link>
           <router-link to="/registration">registration</router-link>

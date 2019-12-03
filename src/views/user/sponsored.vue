@@ -34,11 +34,14 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.sponsored{
-    .company-column{
-        cursor: pointer;
-        border: 1px solid rgba(36, 35, 35, 0.349);
+.sponsored {
+  .company-column {
+    cursor: pointer;
+    border: 1px solid rgba(36, 35, 35, 0.349);
+     img{
+      height: 50px;
     }
+  }
 }
 .sponsored {
   h1 {
@@ -49,7 +52,7 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .contact {
+  .sponsored {
     h1 {
       font-size: 25px;
     }

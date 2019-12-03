@@ -60,6 +60,17 @@
         </div>
       </div>
     </div>
+
+    <div class="google-map pt-lg-5">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58376.817637350614!2d90.3117777!3d23.870069000000008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x9a707416b7fb3c64!2zRGFmZm9kaWwgSW50ZXJuYXRpb25hbCBVbml2ZXJzaXR5IOCmoeCnjeCmr-CmvuCmq-Cni-CmoeCmv-CmsiDgpobgpqjgp43gpqTgprDgp43gppzgpr7gpqTgpr_gppUg4Kas4Ka_4Ka24KeN4Kas4Kas4Ka_4Kam4KeN4Kav4Ka-4Kay4Kav4Ka8!5e0!3m2!1sen!2sbd!4v1575406008564!5m2!1sen!2sbd"
+        width="100%"
+        height="500"
+        frameborder="0"
+        style="border:0;"
+        allowfullscreen
+      ></iframe>
+    </div>
   </div>
 </template>
 <script>
