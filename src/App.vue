@@ -6,6 +6,9 @@
 <style>
 @import url("https://fonts.googleapis.com/css?family=Kanit&display=swap");
 /* font-family: "Kanit", sans-serif; */
+#app{
+  background: #111111;
+}
 .damn-color{
   color: #726e6e;
 }
@@ -29,5 +32,16 @@
   -webkit-box-orient: vertical !important;
   -webkit-box-direction: normal !important;
   flex-direction: column !important;
+}
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+@media (min-width: 1480px) {
+  .container {
+    max-width: 1440px;
+  }
 }
 </style>

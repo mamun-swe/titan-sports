@@ -111,11 +111,15 @@ export default {
     input {
       color: #f87800;
       height: 50px;
+      background: rgb(27, 27, 27);
       font-family: "Kanit", sans-serif;
+      border: 1px solid rgba(36, 35, 35, 0.349);
     }
     textarea {
       color: #f87800;
+      background: rgb(27, 27, 27);
       font-family: "Kanit", sans-serif;
+      border: 1px solid rgba(36, 35, 35, 0.349);
     }
     .form-control:focus {
       border: 1px solid#f87800;
@@ -123,13 +127,13 @@ export default {
     .btn {
       height: 50px;
       font-size: 20px;
-      color: #ffffff;
+      color: #ffffff7e;
       transition: 0.3s;
-      background: #f87800b7;
+      background: rgb(27, 27, 27);
       font-family: "Kanit", sans-serif;
     }
     .btn:hover {
-      background: #f87800d7;
+      background: rgb(46, 45, 45);
     }
     .error {
       color: #f87800;

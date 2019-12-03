@@ -1,5 +1,5 @@
 <template>
-  <div class="custom-footer border-top">
+  <div class="custom-footer">
     <div class="container">
       <div class="row site-content">
         <div class="col-12 col-md-4 mb-3 mb-md-0">
@@ -23,7 +23,7 @@
           <a target="_blank" href>youtube</a>
         </div>
       </div>
-      <div class="row mt-4 py-2 border-top dev-content">
+      <div class="row mt-4 py-2 dev-content">
         <div class="col-12 text-center">
           <p>
             All right reserved & develop by @2019
@@ -45,14 +45,16 @@ export default {
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css?family=Nunito&display=swap");
 .custom-footer {
+  background: rgb(27, 27, 27);
+  border-top: 1px solid rgba(51, 49, 49, 0.349);
   .site-content {
     padding-top: 50px;
     h6 {
-      color: #726e6e;
+      color: #868383;
       font-family: "Kanit", sans-serif;
     }
     p {
-      color: #333131;
+      color: #636060;
       font-size: 16px;
       text-align: justify;
       text-justify: inter-word;

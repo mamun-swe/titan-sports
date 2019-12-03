@@ -16,7 +16,7 @@
 
     <!-- Sponsored -->
 
-    <div class="sponsored-company my-5 py-2 border-bottom shadow-sm">
+    <div class="sponsored-company my-5 py-2 shadow-sm">
       <div class="container">
         <div class="row">
           <div class="col-12">
@@ -226,6 +226,7 @@ export default {
 <style lang="scss" scoped>
 .home {
   .sponsored-company {
+    border-bottom: 1px solid rgba(51, 49, 49, 0.349);
     .col-12 {
       height: 55px;
       position: relative;
@@ -237,7 +238,11 @@ export default {
         cursor: pointer;
         transition: 0.3s;
       }
-      i:hover {
+      i {
+        color: #f8780081;
+        transition: 0.3s;
+      }
+      i:hover{
         color: #f87800;
       }
       .leftIcon {
@@ -258,6 +263,7 @@ export default {
   // News
   .latest-news {
     .card {
+      background: rgb(27, 27, 27);
       h6 {
         font-family: "Kanit", sans-serif;
       }
@@ -316,6 +322,7 @@ export default {
   .team {
     margin-top: 10px;
     .card {
+      background: rgb(27, 27, 27);
       h6 {
         font-family: "Kanit", sans-serif;
       }
@@ -372,6 +379,7 @@ export default {
   // Striming
   .striming {
     .card {
+      background: rgb(27, 27, 27);
       h6 {
         font-family: "Kanit", sans-serif;
       }

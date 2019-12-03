@@ -8,7 +8,7 @@
       </div>
       <div class="row pb-sm-5">
         <div
-          class="col-6 col-md-4 col-lg-3 border px-3 py-4 py-sm-5 text-center company-column"
+          class="col-6 col-md-4 col-lg-3 px-3 py-4 py-sm-5 text-center company-column"
           v-for="(organization, i) in organizations"
           :key="i"
         >
@@ -37,6 +37,7 @@ export default {
 .sponsored{
     .company-column{
         cursor: pointer;
+        border: 1px solid rgba(36, 35, 35, 0.349);
     }
 }
 .sponsored {

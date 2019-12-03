@@ -1,7 +1,7 @@
 <template>
   <div class="custom-nav">
     <!-- Top nav -->
-    <div class="custom-top-nav text-center border-bottom">
+    <div class="custom-top-nav text-center">
       <a target="_blank" href>
         <i class="fab fa-facebook-square"></i>
       </a>
@@ -16,7 +16,7 @@
       </a>
     </div>
     <!-- Desktop nav -->
-    <div class="desktop-nav d-none d-lg-block border-bottom text-center" id="myNav">
+    <div class="desktop-nav d-none d-lg-block text-center" id="myNav">
       <div class="d-flex justify-content-center">
         <div class="pt-3">
           <router-link to="/home">Home</router-link>
@@ -36,7 +36,7 @@
       </div>
     </div>
     <!-- Mobile nav -->
-    <div class="mobile-nav d-block d-lg-none border-bottom">
+    <div class="mobile-nav d-block d-lg-none">
       <div class="d-flex px-3">
         <div>
           <i class="fas fa-bars bars" v-on:click="openMenu" v-show="bars"></i>
@@ -101,7 +101,8 @@ export default {
     padding-top: 10px;
     padding-bottom: 6px;
     height: 41px;
-    background: #ffffff;
+    background: #092c63;
+    border-bottom: 1px solid rgba(82, 80, 80, 0.349);
     a {
       padding-left: 10px;
       padding-right: 10px;
@@ -130,7 +131,8 @@ export default {
     height: 100px;
     width: 100%;
     z-index: 3;
-    background: #ffffff;
+    // background: #ffffff;
+    background: #092c63;
     a {
       padding: 4px 15px;
       margin-left: 5px;
@@ -171,9 +173,10 @@ export default {
     height: 41px;
     width: 100%;
     z-index: 3;
-    background: #ffffff;
     position: fixed;
     top: 0;
+    background: #092c63;
+    border-bottom: 1px solid rgba(82, 80, 80, 0.349);
   }
   .mobile-nav {
     padding-top: 8px;
@@ -181,7 +184,7 @@ export default {
     width: 100%;
     height: 47px;
     z-index: 3;
-    background: #ffffff;
+    background: #092c63;
     position: fixed;
     top: 41px;
     i {
@@ -189,6 +192,7 @@ export default {
       font-size: 22px;
       padding-top: 4px;
       transition: 0.9s;
+      color: #9c9c9c;
     }
     img {
       height: 28px;
@@ -200,9 +204,9 @@ export default {
     width: 100%;
     height: auto;
     left: 0;
-    background: #ffffff;
     z-index: 2;
     transition: 0.9s;
+    background: #092c63;
     a {
       width: 100%;
       padding: 10px 15px;
