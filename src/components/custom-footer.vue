@@ -11,9 +11,9 @@
           <router-link to="/home">home</router-link>
           <router-link to="/">about</router-link>
           <router-link to="/">team</router-link>
-          <router-link to="/">contact</router-link>
-          <router-link to="/">sponsored</router-link>
-          <router-link to="/">registration</router-link>
+          <router-link to="/contact">contact</router-link>
+          <router-link to="/sponsored">sponsored</router-link>
+          <router-link to="/registration">registration</router-link>
         </div>
         <div class="col-12 col-md-4 mb-3 mb-md-0">
           <h6>Connect with us</h6>

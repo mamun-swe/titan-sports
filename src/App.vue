@@ -5,6 +5,7 @@
 </template>
 <style>
 @import url("https://fonts.googleapis.com/css?family=Kanit&display=swap");
+/* font-family: "Kanit", sans-serif; */
 .damn-color{
   color: #726e6e;
 }

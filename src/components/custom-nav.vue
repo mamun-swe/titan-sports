@@ -29,9 +29,9 @@
           </router-link>
         </div>
         <div class="pt-3">
-          <router-link to="/">registration</router-link>
-          <router-link to="/">contact</router-link>
-          <router-link to="/">sponsored</router-link>
+          <router-link to="/registration">registration</router-link>
+          <router-link to="/contact">contact</router-link>
+          <router-link to="/sponsored">sponsored</router-link>
         </div>
       </div>
     </div>
@@ -52,9 +52,9 @@
       <router-link to="/home">Home</router-link>
       <router-link to="/">about</router-link>
       <router-link to="/">team</router-link>
-      <router-link to="/">registration</router-link>
-      <router-link to="/">contact</router-link>
-      <router-link to="/">sponsored</router-link>
+      <router-link to="/registration">registration</router-link>
+      <router-link to="/contact">contact</router-link>
+      <router-link to="/sponsored">sponsored</router-link>
     </div>
 
     <div class="break"></div>
