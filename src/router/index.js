@@ -11,6 +11,8 @@ import TeamRegistration from '../views/user/team-registration'
 import Contact from '../views/user/contact'
 import Sponsored from '../views/user/sponsored'
 
+import AdminAuth from '../views/admin/auth'
+
 
 Vue.use(VueRouter)
 
@@ -30,6 +32,13 @@ const routes = [
       { path: 'registration', component: TeamRegistration },
       { path: 'contact', component: Contact },
       { path: 'sponsored', component: Sponsored }
+    ]
+  },
+  {
+    path: '/admin',
+    component: AdminAuth,
+    children: [
+
     ]
   }
 ]
