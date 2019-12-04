@@ -11,7 +11,7 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-12 col-sm-6 col-lg-4 team-column" v-for="(team, i) in teams" :key="i">
+        <div class="col-12 col-sm-6 col-lg-4 team-column" v-for="(news, i) in allnews" :key="i" v-on:click="openNews(news)">
           <div class="card">
             <div class="custom-header">
               <img src="../../assets/team/team3.jpg" class="card-img" />
@@ -33,17 +33,17 @@ export default {
   name: "news",
   data() {
     return {
-      teams: []
+      allnews: []
     };
   },
   mounted() {
     for (var i = 0; i < 7; i++) {
-      this.teams = i;
+      this.allnews = i;
     }
   },
   methods: {
-    openTeam(team) {
-      this.$router.push({ path: "/team/" + team });
+    openNews(news) {
+      this.$router.push({ path: "/news/" + news });
     }
   }
 };

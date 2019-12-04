@@ -9,7 +9,7 @@
         <div class="col-12 col-md-4 mb-3 mb-md-0 pl-md-5">
           <h6>Links</h6>
           <router-link to="/home">home</router-link>
-          <router-link to="/">about</router-link>
+          <router-link to="/about">about</router-link>
           <router-link to="/team">team</router-link>
           <router-link to="/news">news</router-link>
           <router-link to="/contact">contact</router-link>

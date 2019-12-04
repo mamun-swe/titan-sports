@@ -20,7 +20,7 @@
       <div class="d-flex justify-content-center">
         <div class="pt-3">
           <router-link to="/home">Home</router-link>
-          <router-link to="/">about</router-link>
+          <router-link to="/about">about</router-link>
           <router-link to="/team">team</router-link>
           <router-link to="/news">news</router-link>
         </div>
@@ -51,7 +51,7 @@
 
     <div class="mobile-menu d-block d-lg-none" ref="mobileMenu">
       <router-link to="/home">Home</router-link>
-      <router-link to="/">about</router-link>
+      <router-link to="/about">about</router-link>
       <router-link to="/team">team</router-link>
       <router-link to="/news">news</router-link>
       <router-link to="/registration">registration</router-link>

@@ -6,6 +6,7 @@ import About from '../views/user/About'
 import Team from '../views/user/team'
 import ViewTeam from '../views/user/view-team'
 import News from '../views/user/news'
+import ReadNews from '../views/user/read-news'
 import TeamRegistration from '../views/user/team-registration'
 import Contact from '../views/user/contact'
 import Sponsored from '../views/user/sponsored'
@@ -25,6 +26,7 @@ const routes = [
       { path: 'team', component: Team },
       { path: 'team/:id', component: ViewTeam },
       { path: 'news', component: News },
+      { path: 'news/:id', component: ReadNews },
       { path: 'registration', component: TeamRegistration },
       { path: 'contact', component: Contact },
       { path: 'sponsored', component: Sponsored }

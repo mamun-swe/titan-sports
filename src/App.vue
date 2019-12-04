@@ -6,6 +6,10 @@
 <style>
 @import url("https://fonts.googleapis.com/css?family=Kanit&display=swap");
 /* font-family: "Kanit", sans-serif; */
+@font-face{
+  font-family: Anton;
+  src: url('./assets/fonts/Anton/Anton-Regular.ttf')
+}
 #app{
   background: #111111;
 }
