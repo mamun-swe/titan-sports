@@ -116,6 +116,7 @@ export default {
         type: "success",
         timer: 3000
       });
+      this.closeModal();
     },
     // Add new banner
     handleFileUpload() {
