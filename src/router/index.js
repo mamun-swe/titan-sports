@@ -12,6 +12,12 @@ import Contact from '../views/user/contact'
 import Sponsored from '../views/user/sponsored'
 
 import AdminAuth from '../views/admin/auth'
+import AdminRouting from '../views/admin/admin-routing'
+import Dashboard from '../views/admin/dashboard'
+import Banner from '../views/admin/banner/banner'
+import SponsoredCompany from '../views/admin/sponsored/sponsored'
+import AllNews from '../views/admin/news/all-news'
+import AddNews from '../views/admin/news/add-news'
 
 
 Vue.use(VueRouter)
@@ -34,11 +40,17 @@ const routes = [
       { path: 'sponsored', component: Sponsored }
     ]
   },
+  { path: '/admin', component: AdminAuth },
   {
-    path: '/admin',
-    component: AdminAuth,
+    path: '/menu',
+    component: AdminRouting,
     children: [
-
+      { path: '', redirect: '/menu/dashboard' },
+      { path: 'dashboard', component: Dashboard },
+      { path: 'banners', component: Banner },
+      { path: 'sporser', component: SponsoredCompany },
+      { path: 'news', component: AllNews },
+      { path: 'add-news', component: AddNews }
     ]
   }
 ]

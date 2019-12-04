@@ -60,6 +60,7 @@ export default {
         this.errors.password_err = "Password is required*";
       } else {
         this.errors = false;
+        this.$router.push({ path: "/menu" });
       }
     }
   }
