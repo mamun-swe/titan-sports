@@ -78,12 +78,22 @@ export default {
         this.errors.file_err = "Image is required*";
       } else {
         this.errors = false;
-        this.$fire({
-          title: "Successfully",
-          text: "Team added !!",
-          type: "success",
-          timer: 3000
-        });
+        let formData = new FormData();
+        formData.append("name", this.teamData.name);
+        formData.append("about", this.teamData.about);
+        formData.append("file", this.teamData.file);
+        this.$axios
+          .post(`${this.$admin_api}add-team`, formData)
+          .then(res => {
+            if (res.data.success === true) {
+              this.$fire({
+                title: "Successfully",
+                text: "Team added !!",
+                type: "success",
+                timer: 3000
+              });
+            }
+          });
       }
     }
   }

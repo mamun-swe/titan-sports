@@ -28,16 +28,16 @@
             <tbody>
               <tr v-for="(news, i) in allNews" :key="i">
                 <td>
-                  <img src="../../../assets/team/team1.jpg" class="img-fluid" />
+                  <img :src="news.file" class="img-fluid" />
                 </td>
                 <td>
-                  <p class="mb-0 text-capitalize">10 Nov 2020</p>
+                  <p class="mb-0 text-capitalize">{{news.date | year}}</p>
                 </td>
                 <td>
-                  <p class="mb-0">news title</p>
+                  <p class="mb-0">{{news.title}}</p>
                 </td>
                 <td>
-                  <p class="mb-0">news content</p>
+                  <p class="mb-0">{{news.content.slice(0, 100)}} ...</p>
                 </td>
                 <td>
                   <button type="button" class="btn btn-light rounded-circle shadow-none">
@@ -96,26 +96,35 @@ export default {
   },
   mounted() {
     this.$refs.modal.style = "left: -100%";
-    for (var i = 0; i < 11; i++) {
-      this.allNews = i;
-    }
+    this.$axios.get(`${this.$admin_api}get-news`).then(res => {
+      this.allNews = res.data.images;
+    });
   },
   methods: {
     deleteNews(news) {
-      this.newsId = news;
+      this.newsId = news.id;
       this.$refs.modal.style = "left: 0%";
     },
     closeModal() {
       this.$refs.modal.style = "left: -100%";
     },
     doDelete() {
-      alert(this.newsId);
-      this.$fire({
-        title: "Delete",
-        text: "Successfully deleted. !!",
-        type: "success",
-        timer: 3000
-      });
+      this.$axios
+        .delete(`${this.$admin_api}remove-news/` + this.newsId)
+        .then(res => {
+          if (res.data.success === true) {
+            this.$axios.get(`${this.$admin_api}get-news`).then(res => {
+              this.allNews = res.data.images;
+            });
+            this.$fire({
+              title: "Delete",
+              text: "Successfully deleted. !!",
+              type: "success",
+              timer: 3000
+            });
+          }
+        });
+
       this.closeModal();
     }
   }

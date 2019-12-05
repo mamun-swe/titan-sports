@@ -6,11 +6,20 @@ import App from './App.vue'
 import router from './router'
 import VueSimpleAlert from "vue-simple-alert";
 import DatePicker from "v-calendar/lib/components/date-picker.umd";
+import axios from 'axios'
+import moment from 'moment'
 
 
+Vue.prototype.$axios = axios
+Vue.prototype.$admin_api = "http://localhost:3000/api/admin/"
 Vue.use(VueSimpleAlert, { reverseButtons: true });
 Vue.component('date-picker', DatePicker)
 Vue.config.productionTip = false
+Vue.filter("year", function (value) {
+  if (value) {
+    return moment(String(value)).format("MMM Do YY")
+  }
+});
 
 
 new Vue({

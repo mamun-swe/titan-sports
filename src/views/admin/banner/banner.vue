@@ -13,7 +13,7 @@
           :key="i"
         >
           <div class="card">
-            <img src="../../../assets/sliders/slider.jpg" class="img-fluid" />
+            <img :src="banner.file" class="img-fluid" />
             <div class="custom-overlay p-2 text-right">
               <i class="far fa-trash-alt delete" v-on:click="deleteBanner(banner)"></i>
             </div>
@@ -96,26 +96,34 @@ export default {
   mounted() {
     this.$refs.modal.style = "left: -100%";
     this.$refs.addmodal.style = "left: -100%";
-    for (var i = 0; i < 6; i++) {
-      this.banners = i;
-    }
+    this.$axios.get(`${this.$admin_api}get-banners`).then(res => {
+      this.banners = res.data.images;
+    });
   },
   methods: {
     deleteBanner(banner) {
-      this.bannerId = banner;
+      this.bannerId = banner.id;
       this.$refs.modal.style = "left: 0%";
     },
     closeModal() {
       this.$refs.modal.style = "left: -100%";
     },
     doDelete() {
-      alert(this.bannerId);
-      this.$fire({
-        title: "Delete",
-        text: "Successfully banner deleted. !!",
-        type: "success",
-        timer: 3000
-      });
+      this.$axios
+        .delete(`${this.$admin_api}remove-banner/` + this.bannerId)
+        .then(res => {
+          if (res.data.success === true) {
+            this.$axios.get(`${this.$admin_api}get-banners`).then(res => {
+              this.banners = res.data.images;
+            });
+            this.$fire({
+              title: "Delete",
+              text: "Successfully banner deleted. !!",
+              type: "success",
+              timer: 3000
+            });
+          }
+        });
       this.closeModal();
     },
     // Add new banner
@@ -135,11 +143,18 @@ export default {
         this.errors.file_err = "File is required*";
       } else {
         this.errors = false;
-        this.$fire({
-          title: "New Banner",
-          text: "Successfully added !!",
-          type: "success",
-          timer: 3000
+        this.$axios.post(`${this.$admin_api}add-banner`, formData).then(res => {
+          if (res.data.success === true) {
+            this.$axios.get(`${this.$admin_api}get-banners`).then(res => {
+              this.banners = res.data.images;
+            });
+            this.$fire({
+              title: "New Banner",
+              text: "Successfully added !!",
+              type: "success",
+              timer: 3000
+            });
+          }
         });
       }
     }

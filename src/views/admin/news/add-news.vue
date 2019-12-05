@@ -78,11 +78,19 @@ export default {
         this.errors.file_err = "Image is required*";
       } else {
         this.errors = false;
-        this.$fire({
-          title: "Successfully",
-          text: "News added !!",
-          type: "success",
-          timer: 3000
+        let formData = new FormData();
+        formData.append("title", this.newsData.title);
+        formData.append("content", this.newsData.content);
+        formData.append("file", this.newsData.file);
+        this.$axios.post(`${this.$admin_api}add-news`, formData).then(res => {
+          if (res.data.success === true) {
+            this.$fire({
+              title: "Successfully",
+              text: "News added !!",
+              type: "success",
+              timer: 3000
+            });
+          }
         });
       }
     }

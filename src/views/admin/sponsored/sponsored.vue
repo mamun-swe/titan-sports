@@ -109,26 +109,35 @@ export default {
   mounted() {
     this.$refs.modal.style = "left: -100%";
     this.$refs.addmodal.style = "left: -100%";
-    for (var i = 0; i < 6; i++) {
-      this.organizations = i;
-    }
+    this.$axios.get(`${this.$admin_api}get-companies`).then(res => {
+      this.organizations = res.data.images;
+    });
   },
   methods: {
     deleteOrganization(organization) {
-      this.organizationId = organization;
+      this.organizationId = organization.id;
       this.$refs.modal.style = "left: 0%";
     },
     closeModal() {
       this.$refs.modal.style = "left: -100%";
     },
     doDelete() {
-      alert(this.organizationId);
-      this.$fire({
-        title: "Delete",
-        text: "Successfully deleted. !!",
-        type: "success",
-        timer: 3000
-      });
+      this.$axios
+        .delete(`${this.$admin_api}remove-company/` + this.organizationId)
+        .then(res => {
+          if (res.data.success === true) {
+            this.$axios.get(`${this.$admin_api}get-companies`).then(res => {
+              this.organizations = res.data.images;
+            });
+            this.$fire({
+              title: "Delete",
+              text: "Successfully deleted. !!",
+              type: "success",
+              timer: 3000
+            });
+          }
+        });
+
       this.closeModal();
     },
     // Add new banner
@@ -143,6 +152,7 @@ export default {
     },
     doPost() {
       let formData = new FormData();
+      formData.append("link", this.organizationData.link);
       formData.append("file", this.organizationData.file);
       if (!this.organizationData.link) {
         this.errors.link_err = "Wesite address is required*";
@@ -150,12 +160,21 @@ export default {
         this.errors.file_err = "File is required*";
       } else {
         this.errors = false;
-        this.$fire({
-          title: "New organization",
-          text: "Successfully added !!",
-          type: "success",
-          timer: 3000
-        });
+        this.$axios
+          .post(`${this.$admin_api}add-company`, formData)
+          .then(res => {
+            if (res.data.success === true) {
+              this.$axios.get(`${this.$admin_api}get-companies`).then(res => {
+                this.organizations = res.data.images;
+              });
+              this.$fire({
+                title: "New organization",
+                text: "Successfully added !!",
+                type: "success",
+                timer: 3000
+              });
+            }
+          });
         this.closeAddModal();
       }
     }
