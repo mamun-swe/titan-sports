@@ -16,6 +16,8 @@ import AdminRouting from '../views/admin/admin-routing'
 import Dashboard from '../views/admin/dashboard'
 import Banner from '../views/admin/banner/banner'
 import SponsoredCompany from '../views/admin/sponsored/sponsored'
+import AllTeam from '../views/admin/team/all-team'
+import AddTeam from '../views/admin/team/add-team'
 import AllNews from '../views/admin/news/all-news'
 import AddNews from '../views/admin/news/add-news'
 
@@ -49,6 +51,8 @@ const routes = [
       { path: 'dashboard', component: Dashboard },
       { path: 'banners', component: Banner },
       { path: 'sporser', component: SponsoredCompany },
+      { path: 'teams', component: AllTeam },
+      { path: 'add-team', component: AddTeam },
       { path: 'news', component: AllNews },
       { path: 'add-news', component: AddNews }
     ]
