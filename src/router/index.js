@@ -20,6 +20,7 @@ import AllTeam from '../views/admin/team/all-team'
 import AddTeam from '../views/admin/team/add-team'
 import AllNews from '../views/admin/news/all-news'
 import AddNews from '../views/admin/news/add-news'
+import Profile from '../views/admin/admin-profile'
 
 
 Vue.use(VueRouter)
@@ -54,7 +55,8 @@ const routes = [
       { path: 'teams', component: AllTeam },
       { path: 'add-team', component: AddTeam },
       { path: 'news', component: AllNews },
-      { path: 'add-news', component: AddNews }
+      { path: 'add-news', component: AddNews },
+      { path: 'profile', component: Profile }
     ]
   }
 ]

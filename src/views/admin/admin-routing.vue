@@ -3,7 +3,7 @@
     <div class="custom-top-nav border-bottom p-3">
       <div class="d-flex">
         <div class="ml-auto">
-          <p class="mb-0 text-capitalize">admin</p>
+          <router-link to="/menu/profile"><p class="mb-0 text-capitalize">admin</p></router-link>
           <i class="fas fa-power-off logout mx-2" v-on:click="logout"></i>
           <i class="fas fa-bars" v-on:click="openMenu" v-show="bars"></i>
           <i class="fas fa-times" v-on:click="closeMenu" v-show="close"></i>
