@@ -1,5 +1,7 @@
 <template>
   <div class="sponsored">
+    <!-- Loader -->
+    <Loader v-if="loader"></Loader>
     <div class="container">
       <div class="row py-5">
         <div class="col-12 text-center">
@@ -21,17 +23,24 @@
   </div>
 </template>
 <script>
+import Loader from "./loader";
 export default {
   name: "sponsored",
+  components: {
+    Loader
+  },
   data() {
     return {
+      loader: null,
       organizations: []
     };
   },
   mounted() {
+    this.loader=true;
     window.scrollTo(0, 0);
     this.$axios.get(`${this.$user_api}companies`).then(res => {
       this.organizations = res.data.companies;
+      this.loader=false;
     });
   }
 };

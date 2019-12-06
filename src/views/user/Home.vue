@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+    <!-- Loader -->
+    <Loader v-if="loader"></Loader>
     <carousel-3d
       autoplay="true"
       autoplayTimeout="2000"
@@ -131,17 +133,20 @@
 </template>
 
 <script>
+import Loader from './loader';
 import { Carousel3d, Slide } from "vue-carousel-3d";
 import Slick from "vue-slick";
 export default {
   name: "home",
   components: {
+    Loader,
     Carousel3d,
     Slide,
     Slick
   },
   data() {
     return {
+      loader: null,
       slides: [],
       companies: [],
       fourNews: [],
@@ -179,18 +184,23 @@ export default {
     };
   },
   mounted() {
+    this.loader = true;
     window.scrollTo(0, 0);
     this.$axios.get(`${this.$user_api}sliders`).then(res => {
       this.slides = res.data.sliders;
+      this.loader = false;
     });
     this.$axios.get(`${this.$user_api}companies`).then(res => {
       this.companies = res.data.companies;
+      this.loader = false;
     });
     this.$axios.get(`${this.$user_api}four-news`).then(res => {
       this.fourNews = res.data.news;
+      this.loader = false;
     });
     this.$axios.get(`${this.$user_api}nine-team`).then(res => {
       this.teams = res.data.teams;
+      this.loader = false;
     });
   },
   methods: {

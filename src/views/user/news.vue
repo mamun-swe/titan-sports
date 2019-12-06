@@ -1,5 +1,7 @@
 <template>
   <div class="news">
+    <!-- Loader -->
+    <Loader v-if="loader"></Loader>
     <div class="banner">
       <img src="../../assets/static/news-banner.jpg" class="img-fluid" />
       <div class="banner-overlay">
@@ -34,17 +36,24 @@
   </div>
 </template>
 <script>
+import Loader from "./loader";
 export default {
   name: "news",
+  components: {
+    Loader
+  },
   data() {
     return {
+      loader: null,
       allnews: []
     };
   },
   mounted() {
+    this.loader = true;
     window.scrollTo(0, 0);
     this.$axios.get(`${this.$user_api}all-news`).then(res => {
       this.allnews = res.data.news;
+      this.loader = false;
     });
   },
   methods: {

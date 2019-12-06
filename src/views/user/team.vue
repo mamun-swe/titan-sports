@@ -1,5 +1,7 @@
 <template>
   <div class="team">
+    <!-- Loader -->
+    <Loader v-if="loader"></Loader>
     <div class="banner">
       <img src="../../assets/static/team-banner.jpg" class="img-fluid" />
       <div class="banner-overlay">
@@ -30,17 +32,24 @@
   </div>
 </template>
 <script>
+import Loader from './loader';
 export default {
   name: "team",
+    components: {
+    Loader
+  },
   data() {
     return {
+      loader: null,
       teams: []
     };
   },
   mounted() {
+    this.loader = true;
     window.scrollTo(0, 0);
     this.$axios.get(`${this.$user_api}all-team`).then(res => {
       this.teams = res.data.teams;
+      this.loader = false;
     });
   },
   methods: {

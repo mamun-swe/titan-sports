@@ -1,31 +1,42 @@
 <template>
   <div class="read-news">
-    <div class="container py-lg-5">
+    <!-- Loader -->
+    <Loader v-if="loader"></Loader>
+    <div class="container py-lg-5" v-if="news">
       <div class="row">
         <div class="col-12 col-lg-6 text-center mt-4 mt-md-5">
-          <img src="../../assets/team/team1.jpg" class="img-fluid" />
+          <img :src="news.file" class="img-fluid" />
         </div>
         <div class="col-12 col-lg-6 pl-lg-5 pt-3 pt-lg-5">
-          <h1 class="mb-0">Team Name</h1>
-          <small class="text-capitalize">10 NOV 2020</small>
-          <p
-            class="mt-2"
-          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, optio quis ducimus quasi alias vitae vel modi sapiente facere omnis et provident vero eligendi sequi voluptas maiores voluptatem itaque quia suscipit. Recusandae laboriosam iusto, cum sit, voluptas quidem dicta ipsa minima deserunt temporibus, aut nesciunt expedita maxime commodi aperiam aliquid?</p>
+          <h1 class="mb-0">{{news.title}}</h1>
+          <small class="text-capitalize">{{news.date | year}}</small>
+          <p class="mt-2">{{news.content}}</p>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import Loader from "./loader";
 export default {
   name: "read-news",
+  components: {
+    Loader
+  },
   data() {
     return {
-      newsId: this.$route.params.id
+      loader: null,
+      newsId: this.$route.params.id,
+      news: ""
     };
   },
   mounted() {
+    this.loader = true;
     window.scrollTo(0, 0);
+    this.$axios.get(`${this.$user_api}read-news/` + this.newsId).then(res => {
+      this.news = res.data;
+      this.loader = false;
+    });
   }
 };
 </script>

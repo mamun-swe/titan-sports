@@ -1,28 +1,42 @@
 <template>
   <div class="view-team">
-    <div class="container py-lg-5">
+    <!-- Loader -->
+    <Loader v-if="loader"></Loader>
+    <div class="container py-lg-5" v-if="team">
       <div class="row">
         <div class="col-12 col-lg-6 text-center mt-4 mt-md-5">
-          <img src="../../assets/team/team1.jpg" class="img-fluid" />
+          <img :src="team.file" class="img-fluid" />
         </div>
         <div class="col-12 col-lg-6 pl-lg-5 pt-3 pt-lg-5">
-          <h1>Team Name</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, optio quis ducimus quasi alias vitae vel modi sapiente facere omnis et provident vero eligendi sequi voluptas maiores voluptatem itaque quia suscipit. Recusandae laboriosam iusto, cum sit, voluptas quidem dicta ipsa minima deserunt temporibus, aut nesciunt expedita maxime commodi aperiam aliquid?</p>
+          <h1>{{team.name}}</h1>
+          <p>{{team.about}}</p>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import Loader from "./loader";
 export default {
   name: "view-team",
+  components: {
+    Loader
+  },
   data() {
     return {
+      loader: null,
+      team: '',
       teamId: this.$route.params.id
     };
   },
-  mounted(){
+  mounted() {
+    this.loader = true;
     window.scrollTo(0, 0);
+    this.$axios.get(`${this.$user_api}single-team/` + this.teamId)
+    .then(res => {
+      this.team = res.data;
+      this.loader = false;
+    });
   }
 };
 </script>
