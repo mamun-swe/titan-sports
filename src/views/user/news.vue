@@ -9,18 +9,23 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" v-if="allnews.length">
       <div class="row">
-        <div class="col-12 col-sm-6 col-lg-4 team-column" v-for="(news, i) in allnews" :key="i" v-on:click="openNews(news)">
+        <div
+          class="col-12 col-sm-6 col-lg-4 team-column"
+          v-for="(news, i) in allnews"
+          :key="i"
+          v-on:click="openNews(news)"
+        >
           <div class="card">
             <div class="custom-header">
-              <img src="../../assets/team/team3.jpg" class="card-img" />
+              <img :src="news.file" class="card-img" />
               <div class="custom-team-overlay"></div>
             </div>
             <div class="card-body">
-              <h5 class="mb-0">News title</h5>
-              <small class="text-capitalize">10 NOV 2020</small>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, dolores. Maxime libero quos corporis quis excepturi eos, qui animi aliquam?</p>
+              <h5 class="mb-0">{{news.title.slice(0, 30)}} ...</h5>
+              <small class="text-capitalize">{{news.date | year}}</small>
+              <p>{{news.content.slice(0, 100)}}</p>
             </div>
           </div>
         </div>
@@ -37,13 +42,14 @@ export default {
     };
   },
   mounted() {
-    for (var i = 0; i < 7; i++) {
-      this.allnews = i;
-    }
+    window.scrollTo(0, 0);
+    this.$axios.get(`${this.$user_api}all-news`).then(res => {
+      this.allnews = res.data.news;
+    });
   },
   methods: {
     openNews(news) {
-      this.$router.push({ path: "/news/" + news });
+      this.$router.push({ path: "/news/" + news.id });
     }
   }
 };

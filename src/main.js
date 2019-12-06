@@ -12,6 +12,7 @@ import moment from 'moment'
 
 Vue.prototype.$axios = axios
 Vue.prototype.$admin_api = "http://localhost:3000/api/admin/"
+Vue.prototype.$user_api = "http://localhost:3000/api/user/"
 Vue.use(VueSimpleAlert, { reverseButtons: true });
 Vue.component('date-picker', DatePicker)
 Vue.config.productionTip = false
@@ -20,6 +21,7 @@ Vue.filter("year", function (value) {
     return moment(String(value)).format("MMM Do YY")
   }
 });
+
 
 
 new Vue({

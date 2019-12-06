@@ -8,9 +8,10 @@
       height="380"
       border="0"
       clickable="false"
+      v-if="slides.length"
     >
       <slide v-for="(slide, i) in slides" :index="i" :key="i">
-        <img src="../../assets/sliders/team.png" class="img-fluid" />
+        <img :src="slide.file" class="img-fluid" />
       </slide>
     </carousel-3d>
 
@@ -20,21 +21,9 @@
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <slick ref="slick" :options="slickOptions" class="px-3 px-lg-5">
-              <div class="text-center">
-                <img src="../../assets/sponsored/logo.png" class="img-fluid" />
-              </div>
-              <div class="text-center">
-                <img src="../../assets/sponsored/logo.png" class="img-fluid" />
-              </div>
-              <div class="text-center">
-                <img src="../../assets/sponsored/logo.png" class="img-fluid" />
-              </div>
-              <div class="text-center">
-                <img src="../../assets/sponsored/logo.png" class="img-fluid" />
-              </div>
-              <div class="text-center">
-                <img src="../../assets/sponsored/logo.png" class="img-fluid" />
+            <slick ref="slick" :options="slickOptions" class="px-3 px-lg-5" v-if="companies.length">
+              <div class="text-center" v-for="company in companies" :key="company.id">
+                <img :src="company.file" class="img-fluid" />
               </div>
             </slick>
             <i class="fas fa-chevron-left leftIcon" v-on:click="prev"></i>
@@ -59,40 +48,18 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-12">
-            <div class="news-card">
-              <img src="../../assets/team/team1.jpg" class="img-fluid" />
+          <div class="col-12" v-if="fourNews.length">
+            <div
+              class="news-card"
+              v-for="news in fourNews"
+              :key="news.id"
+              v-on:click="openNews(news)"
+            >
+              <img :src="news.file" class="img-fluid" />
               <div class="custom-overlay">
                 <div class="content">
-                  <h5>Team abcd win all over in asia</h5>
-                  <p class="mb-0">30 Nov 2020</p>
-                </div>
-              </div>
-            </div>
-            <div class="news-card">
-              <img src="../../assets/team/team2.jpg" class="img-fluid" />
-              <div class="custom-overlay">
-                <div class="content">
-                  <h5>Team abcd win all over in asia</h5>
-                  <p class="mb-0">30 Nov 2020</p>
-                </div>
-              </div>
-            </div>
-            <div class="news-card">
-              <img src="../../assets/team/team3.jpg" class="img-fluid" />
-              <div class="custom-overlay">
-                <div class="content">
-                  <h5>Team abcd win all over in asia</h5>
-                  <p class="mb-0">30 Nov 2020</p>
-                </div>
-              </div>
-            </div>
-            <div class="news-card">
-              <img src="../../assets/team/team4.jpg" class="img-fluid" />
-              <div class="custom-overlay">
-                <div class="content">
-                  <h5>Team abcd win all over in asia</h5>
-                  <p class="mb-0">30 Nov 2020</p>
+                  <h5>{{news.title}}</h5>
+                  <p class="mb-0">{{news.date | year}}</p>
                 </div>
               </div>
             </div>
@@ -117,9 +84,9 @@
         </div>
 
         <div class="row">
-          <div class="col-12 col-sm-6 col-lg-4 team-column" v-for="(team, i) in teams" :key="i">
+          <div class="col-12 col-sm-6 col-lg-4 team-column" v-for="team in teams" :key="team.id">
             <div class="card">
-              <img src="../../assets/team/team1.jpg" class="card-img" />
+              <img :src="team.file" class="card-img" />
               <div class="custom-team-overlay">
                 <div class="content text-center">
                   <button
@@ -176,6 +143,8 @@ export default {
   data() {
     return {
       slides: [],
+      companies: [],
+      fourNews: [],
       teams: [],
       slickOptions: {
         slidesToShow: 4,
@@ -210,12 +179,19 @@ export default {
     };
   },
   mounted() {
-    for (var i = 0; i < 6; i++) {
-      this.slides = i;
-    }
-    for (var x = 0; x < 10; x++) {
-      this.teams = x;
-    }
+    window.scrollTo(0, 0);
+    this.$axios.get(`${this.$user_api}sliders`).then(res => {
+      this.slides = res.data.sliders;
+    });
+    this.$axios.get(`${this.$user_api}companies`).then(res => {
+      this.companies = res.data.companies;
+    });
+    this.$axios.get(`${this.$user_api}four-news`).then(res => {
+      this.fourNews = res.data.news;
+    });
+    this.$axios.get(`${this.$user_api}nine-team`).then(res => {
+      this.teams = res.data.teams;
+    });
   },
   methods: {
     next() {
@@ -224,8 +200,11 @@ export default {
     prev() {
       this.$refs.slick.prev();
     },
+    openNews(news) {
+      this.$router.push({ path: "/news/" + news.id });
+    },
     openTeam(team) {
-      this.$router.push({ path: "/team/" + team });
+      this.$router.push({ path: "/team/" + team.id });
     }
   }
 };

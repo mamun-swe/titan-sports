@@ -90,15 +90,30 @@ export default {
       },
       errors: {
         file_err: ""
+      },
+      header: {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
       }
     };
   },
   mounted() {
     this.$refs.modal.style = "left: -100%";
     this.$refs.addmodal.style = "left: -100%";
-    this.$axios.get(`${this.$admin_api}get-banners`).then(res => {
-      this.banners = res.data.images;
-    });
+    this.$axios
+      .get(`${this.$admin_api}get-banners`, this.header)
+      .then(res => {
+        this.banners = res.data.images;
+      })
+      .catch(error => {
+        if (error) {
+          if (error.response.status == 401) {
+            localStorage.clear();
+            this.$router.push({ path: "/admin" });
+          }
+        }
+      });
   },
   methods: {
     deleteBanner(banner) {
@@ -110,12 +125,22 @@ export default {
     },
     doDelete() {
       this.$axios
-        .delete(`${this.$admin_api}remove-banner/` + this.bannerId)
+        .delete(`${this.$admin_api}remove-banner/` + this.bannerId, this.header)
         .then(res => {
           if (res.data.success === true) {
-            this.$axios.get(`${this.$admin_api}get-banners`).then(res => {
-              this.banners = res.data.images;
-            });
+            this.$axios
+              .get(`${this.$admin_api}get-banners`, this.header)
+              .then(res => {
+                this.banners = res.data.images;
+              })
+              .catch(error => {
+                if (error) {
+                  if (error.response.status == 401) {
+                    localStorage.clear();
+                    this.$router.push({ path: "/admin" });
+                  }
+                }
+              });
             this.$fire({
               title: "Delete",
               text: "Successfully banner deleted. !!",
@@ -143,19 +168,39 @@ export default {
         this.errors.file_err = "File is required*";
       } else {
         this.errors = false;
-        this.$axios.post(`${this.$admin_api}add-banner`, formData).then(res => {
-          if (res.data.success === true) {
-            this.$axios.get(`${this.$admin_api}get-banners`).then(res => {
-              this.banners = res.data.images;
-            });
-            this.$fire({
-              title: "New Banner",
-              text: "Successfully added !!",
-              type: "success",
-              timer: 3000
-            });
-          }
-        });
+        this.$axios
+          .post(`${this.$admin_api}add-banner`, formData, this.header)
+          .then(res => {
+            if (res.data.success === true) {
+              this.$axios
+                .get(`${this.$admin_api}get-banners`, this.header)
+                .then(res => {
+                  this.banners = res.data.images;
+                })
+                .catch(error => {
+                  if (error) {
+                    if (error.response.status == 401) {
+                      localStorage.clear();
+                      this.$router.push({ path: "/admin" });
+                    }
+                  }
+                });
+              this.$fire({
+                title: "New Banner",
+                text: "Successfully added !!",
+                type: "success",
+                timer: 3000
+              });
+            }
+          })
+          .catch(error => {
+            if (error) {
+              if (error.response.status == 401) {
+                localStorage.clear();
+                this.$router.push({ path: "/admin" });
+              }
+            }
+          });
       }
     }
   }

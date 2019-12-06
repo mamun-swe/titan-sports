@@ -40,7 +40,11 @@
                   <p class="mb-0">{{news.content.slice(0, 100)}} ...</p>
                 </td>
                 <td>
-                  <button type="button" class="btn btn-light rounded-circle shadow-none">
+                  <button
+                    type="button"
+                    class="btn btn-light rounded-circle shadow-none"
+                    v-on:click="editNews(news)"
+                  >
                     <i class="fas fa-pen"></i>
                   </button>
                   <button
@@ -91,14 +95,29 @@ export default {
   data() {
     return {
       allNews: [],
-      newsId: ""
+      newsId: "",
+      header: {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
+      }
     };
   },
   mounted() {
     this.$refs.modal.style = "left: -100%";
-    this.$axios.get(`${this.$admin_api}get-news`).then(res => {
-      this.allNews = res.data.images;
-    });
+    this.$axios
+      .get(`${this.$admin_api}get-news`, this.header)
+      .then(res => {
+        this.allNews = res.data.images;
+      })
+      .catch(error => {
+        if (error) {
+          if (error.response.status == 401) {
+            localStorage.clear();
+            this.$router.push({ path: "/admin" });
+          }
+        }
+      });
   },
   methods: {
     deleteNews(news) {
@@ -110,12 +129,22 @@ export default {
     },
     doDelete() {
       this.$axios
-        .delete(`${this.$admin_api}remove-news/` + this.newsId)
+        .delete(`${this.$admin_api}remove-news/` + this.newsId, this.header)
         .then(res => {
           if (res.data.success === true) {
-            this.$axios.get(`${this.$admin_api}get-news`).then(res => {
-              this.allNews = res.data.images;
-            });
+            this.$axios
+              .get(`${this.$admin_api}get-news`, this.header)
+              .then(res => {
+                this.allNews = res.data.images;
+              })
+              .catch(error => {
+                if (error) {
+                  if (error.response.status == 401) {
+                    localStorage.clear();
+                    this.$router.push({ path: "/admin" });
+                  }
+                }
+              });
             this.$fire({
               title: "Delete",
               text: "Successfully deleted. !!",
@@ -123,9 +152,20 @@ export default {
               timer: 3000
             });
           }
+        })
+        .catch(error => {
+          if (error) {
+            if (error.response.status == 401) {
+              localStorage.clear();
+              this.$router.push({ path: "/admin" });
+            }
+          }
         });
 
       this.closeModal();
+    },
+    editNews(news) {
+      this.$router.push({ path: "/menu/edit-news/" + news.id });
     }
   }
 };

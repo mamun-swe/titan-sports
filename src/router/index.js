@@ -18,8 +18,10 @@ import Banner from '../views/admin/banner/banner'
 import SponsoredCompany from '../views/admin/sponsored/sponsored'
 import AllTeam from '../views/admin/team/all-team'
 import AddTeam from '../views/admin/team/add-team'
+import EditTeam from '../views/admin/team/edit-team'
 import AllNews from '../views/admin/news/all-news'
 import AddNews from '../views/admin/news/add-news'
+import EditNews from '../views/admin/news/edit-news'
 import Profile from '../views/admin/admin-profile'
 
 
@@ -47,6 +49,13 @@ const routes = [
   {
     path: '/menu',
     component: AdminRouting,
+    beforeEnter: (to, from, next) => {
+      if (localStorage.getItem('token')) {
+        next()
+      } else {
+        next('/admin')
+      }
+    },
     children: [
       { path: '', redirect: '/menu/dashboard' },
       { path: 'dashboard', component: Dashboard },
@@ -54,8 +63,10 @@ const routes = [
       { path: 'sporser', component: SponsoredCompany },
       { path: 'teams', component: AllTeam },
       { path: 'add-team', component: AddTeam },
+      { path: 'edit-team/:id', component: EditTeam },
       { path: 'news', component: AllNews },
       { path: 'add-news', component: AddNews },
+      { path: 'edit-news/:id', component: EditNews },
       { path: 'profile', component: Profile }
     ]
   }

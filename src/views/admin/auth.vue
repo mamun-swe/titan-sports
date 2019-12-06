@@ -60,7 +60,23 @@ export default {
         this.errors.password_err = "Password is required*";
       } else {
         this.errors = false;
-        this.$router.push({ path: "/menu" });
+        this.$axios
+          .post(`${this.$admin_api}login-admin`, this.loginData)
+          .then(res => {
+            if (res.data.message === "success") {
+              localStorage.setItem("token", res.data.token);
+              localStorage.setItem("id", res.data.id);
+              this.$router.push({ path: "/menu" });
+            }
+            if (res.data.message === "error") {
+              this.$fire({
+                title: "Login Failed",
+                text: "E-mail or password incorrect !!",
+                type: "warning",
+                timer: 3000
+              });
+            }
+          });
       }
     }
   }

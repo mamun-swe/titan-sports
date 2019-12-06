@@ -9,11 +9,11 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" v-if="teams.length">
       <div class="row">
         <div class="col-12 col-sm-6 col-lg-4 team-column" v-for="(team, i) in teams" :key="i">
           <div class="card">
-            <img src="../../assets/team/team1.jpg" class="card-img" />
+            <img :src="team.file" class="card-img" />
             <div class="custom-team-overlay">
               <div class="content text-center">
                 <button
@@ -38,13 +38,14 @@ export default {
     };
   },
   mounted() {
-    for (var i = 0; i < 22; i++) {
-      this.teams = i;
-    }
+    window.scrollTo(0, 0);
+    this.$axios.get(`${this.$user_api}all-team`).then(res => {
+      this.teams = res.data.teams;
+    });
   },
   methods: {
     openTeam(team) {
-      this.$router.push({ path: "/team/" + team });
+      this.$router.push({ path: "/team/" + team.id });
     }
   }
 };

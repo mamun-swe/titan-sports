@@ -2,25 +2,28 @@
   <div class="profile">
     <div class="container">
       <div class="row py-3 py-lg-5">
-        <div class="col-12">
-          <form>
+        <div class="col-12" v-if="loggedAdmin">
+          <form @submit.prevent="updateAdmin">
             <div class="row">
               <div class="col-12 col-lg-6">
                 <div class="form-group">
                   <small>Name</small>
-                  <input type="text" class="form-control rounded-0 shadow-none" />
+                  <input
+                    type="text"
+                    class="form-control rounded-0 shadow-none"
+                    v-model="loggedAdmin.name"
+                  />
                 </div>
               </div>
               <div class="col-12 col-lg-6">
                 <div class="form-group">
                   <small>E-mail</small>
-                  <input type="text" class="form-control rounded-0 shadow-none" />
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group mb-4">
-                  <small>Password</small>
-                  <input type="password" class="form-control rounded-0 shadow-none" />
+                  <input
+                    type="text"
+                    class="form-control rounded-0 shadow-none"
+                    disabled
+                    v-model="loggedAdmin.email"
+                  />
                 </div>
               </div>
             </div>
@@ -81,6 +84,8 @@ export default {
   data() {
     return {
       admins: [],
+      loggedAdmin: "",
+      adminId: localStorage.getItem("id"),
       newAdmin: {
         name: "",
         email: "",
@@ -90,13 +95,41 @@ export default {
         name_err: "",
         email_err: "",
         password_err: ""
+      },
+      header: {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
       }
     };
   },
   mounted() {
-    this.$axios.get(`${this.$admin_api}all-admin`).then(res => {
-      this.admins = res.data.admins;
-    });
+    this.$axios
+      .get(`${this.$admin_api}all-admin`, this.header)
+      .then(res => {
+        this.admins = res.data.admins;
+      })
+      .catch(error => {
+        if (error) {
+          if (error.response.status == 401) {
+            localStorage.clear();
+            this.$router.push({ path: "/admin" });
+          }
+        }
+      });
+    this.$axios
+      .get(`${this.$admin_api}logged-admin/` + this.adminId, this.header)
+      .then(res => {
+        this.loggedAdmin = res.data.admin;
+      })
+      .catch(error => {
+        if (error) {
+          if (error.response.status == 401) {
+            localStorage.clear();
+            this.$router.push({ path: "/admin" });
+          }
+        }
+      });
   },
   methods: {
     saveAdmin() {
@@ -122,6 +155,19 @@ export default {
               });
             }
             if (res.data.message === "success") {
+              this.$axios
+                .get(`${this.$admin_api}all-admin`, this.header)
+                .then(res => {
+                  this.admins = res.data.admins;
+                })
+                .catch(error => {
+                  if (error) {
+                    if (error.response.status == 401) {
+                      localStorage.clear();
+                      this.$router.push({ path: "/admin" });
+                    }
+                  }
+                });
               this.$fire({
                 title: "Successfully",
                 text: "New admin saved !!",
@@ -131,6 +177,57 @@ export default {
             }
           });
       }
+    },
+    updateAdmin() {
+      this.$axios
+        .patch(`${this.$admin_api}update-admin`, this.loggedAdmin, this.header)
+        .then(res => {
+          if (res.data.message == "success") {
+            this.$axios
+              .get(`${this.$admin_api}all-admin`, this.header)
+              .then(res => {
+                this.admins = res.data.admins;
+              })
+              .catch(error => {
+                if (error) {
+                  if (error.response.status == 401) {
+                    localStorage.clear();
+                    this.$router.push({ path: "/admin" });
+                  }
+                }
+              });
+            this.$axios
+              .get(
+                `${this.$admin_api}logged-admin/` + this.adminId,
+                this.header
+              )
+              .then(res => {
+                this.loggedAdmin = res.data.admin;
+              })
+              .catch(error => {
+                if (error) {
+                  if (error.response.status == 401) {
+                    localStorage.clear();
+                    this.$router.push({ path: "/admin" });
+                  }
+                }
+              });
+            this.$fire({
+              title: "Successfully",
+              text: "Update your info !!",
+              type: "success",
+              timer: 3000
+            });
+          }
+        })
+        .catch(error => {
+          if (error) {
+            if (error.response.status == 401) {
+              localStorage.clear();
+              this.$router.push({ path: "/admin" });
+            }
+          }
+        });
     }
   }
 };

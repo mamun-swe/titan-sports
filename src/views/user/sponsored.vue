@@ -6,13 +6,15 @@
           <h1>Our Sponsored</h1>
         </div>
       </div>
-      <div class="row pb-sm-5">
+      <div class="row pb-sm-5" v-if="organizations.length">
         <div
           class="col-6 col-md-4 col-lg-3 px-3 py-4 py-sm-5 text-center company-column"
           v-for="(organization, i) in organizations"
           :key="i"
         >
-          <img src="../../assets/sponsored/logo.png" class="img-fluid" />
+          <a target="_blank" :href="organization.link">
+            <img :src="organization.file" class="img-fluid" />
+          </a>
         </div>
       </div>
     </div>
@@ -27,18 +29,19 @@ export default {
     };
   },
   mounted() {
-    for (var i = 0; i < 13; i++) {
-      this.organizations = i;
-    }
+    window.scrollTo(0, 0);
+    this.$axios.get(`${this.$user_api}companies`).then(res => {
+      this.organizations = res.data.companies;
+    });
   }
 };
 </script>
 <style lang="scss" scoped>
 .sponsored {
   .company-column {
-    cursor: pointer;
     border: 1px solid rgba(36, 35, 35, 0.349);
-     img{
+    img {
+      cursor: pointer;
       height: 50px;
     }
   }
@@ -58,5 +61,4 @@ export default {
     }
   }
 }
-
 </style>

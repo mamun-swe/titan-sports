@@ -62,6 +62,11 @@ export default {
         name_err: "",
         about_err: "",
         file_err: ""
+      },
+      header: {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
       }
     };
   },
@@ -83,7 +88,7 @@ export default {
         formData.append("about", this.teamData.about);
         formData.append("file", this.teamData.file);
         this.$axios
-          .post(`${this.$admin_api}add-team`, formData)
+          .post(`${this.$admin_api}add-team`, formData, this.header)
           .then(res => {
             if (res.data.success === true) {
               this.$fire({
@@ -92,6 +97,14 @@ export default {
                 type: "success",
                 timer: 3000
               });
+            }
+          })
+          .catch(error => {
+            if (error) {
+              if (error.response.status == 401) {
+                localStorage.clear();
+                this.$router.push({ path: "/admin" });
+              }
             }
           });
       }

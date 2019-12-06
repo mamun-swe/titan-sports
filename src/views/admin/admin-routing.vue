@@ -3,7 +3,9 @@
     <div class="custom-top-nav border-bottom p-3">
       <div class="d-flex">
         <div class="ml-auto">
-          <router-link to="/menu/profile"><p class="mb-0 text-capitalize">admin</p></router-link>
+          <router-link to="/menu/profile">
+            <p class="mb-0 text-capitalize">{{loggedAdmin}}</p>
+          </router-link>
           <i class="fas fa-power-off logout mx-2" v-on:click="logout"></i>
           <i class="fas fa-bars" v-on:click="openMenu" v-show="bars"></i>
           <i class="fas fa-times" v-on:click="closeMenu" v-show="close"></i>
@@ -27,11 +29,31 @@ export default {
   data() {
     return {
       bars: true,
-      close: false
+      close: false,
+      loggedAdmin: "",
+      adminId: localStorage.getItem("id"),
+      header: {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
+      }
     };
   },
   mounted() {
     document.getElementById("sideMenu").style.marginLeft = "-220px";
+    this.$axios
+      .get(`${this.$admin_api}logged-admin/` + this.adminId, this.header)
+      .then(res => {
+        this.loggedAdmin = res.data.admin.name;
+      })
+      .catch(error => {
+        if (error) {
+          if (error.response.status == 401) {
+            localStorage.clear();
+            this.$router.push({ path: "/admin" });
+          }
+        }
+      });
   },
   methods: {
     logout() {

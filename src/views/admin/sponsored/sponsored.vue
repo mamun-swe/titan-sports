@@ -103,15 +103,30 @@ export default {
       errors: {
         link_err: "",
         file_err: ""
+      },
+      header: {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
       }
     };
   },
   mounted() {
     this.$refs.modal.style = "left: -100%";
     this.$refs.addmodal.style = "left: -100%";
-    this.$axios.get(`${this.$admin_api}get-companies`).then(res => {
-      this.organizations = res.data.images;
-    });
+    this.$axios
+      .get(`${this.$admin_api}get-companies`, this.header)
+      .then(res => {
+        this.organizations = res.data.images;
+      })
+      .catch(error => {
+        if (error) {
+          if (error.response.status == 401) {
+            localStorage.clear();
+            this.$router.push({ path: "/admin" });
+          }
+        }
+      });
   },
   methods: {
     deleteOrganization(organization) {
@@ -123,10 +138,10 @@ export default {
     },
     doDelete() {
       this.$axios
-        .delete(`${this.$admin_api}remove-company/` + this.organizationId)
+        .delete(`${this.$admin_api}remove-company/` + this.organizationId, this.header)
         .then(res => {
           if (res.data.success === true) {
-            this.$axios.get(`${this.$admin_api}get-companies`).then(res => {
+            this.$axios.get(`${this.$admin_api}get-companies`, this.header).then(res => {
               this.organizations = res.data.images;
             });
             this.$fire({
@@ -135,6 +150,14 @@ export default {
               type: "success",
               timer: 3000
             });
+          }
+        })
+        .catch(error => {
+          if (error) {
+            if (error.response.status == 401) {
+              localStorage.clear();
+              this.$router.push({ path: "/admin" });
+            }
           }
         });
 
@@ -161,18 +184,36 @@ export default {
       } else {
         this.errors = false;
         this.$axios
-          .post(`${this.$admin_api}add-company`, formData)
+          .post(`${this.$admin_api}add-company`, formData, this.header)
           .then(res => {
             if (res.data.success === true) {
-              this.$axios.get(`${this.$admin_api}get-companies`).then(res => {
-                this.organizations = res.data.images;
-              });
+              this.$axios
+                .get(`${this.$admin_api}get-companies`, this.header)
+                .then(res => {
+                  this.organizations = res.data.images;
+                })
+                .catch(error => {
+                  if (error) {
+                    if (error.response.status == 401) {
+                      localStorage.clear();
+                      this.$router.push({ path: "/admin" });
+                    }
+                  }
+                });
               this.$fire({
                 title: "New organization",
                 text: "Successfully added !!",
                 type: "success",
                 timer: 3000
               });
+            }
+          })
+          .catch(error => {
+            if (error) {
+              if (error.response.status == 401) {
+                localStorage.clear();
+                this.$router.push({ path: "/admin" });
+              }
             }
           });
         this.closeAddModal();

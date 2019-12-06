@@ -62,6 +62,11 @@ export default {
         title_err: "",
         content_err: "",
         file_err: ""
+      },
+      header: {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
       }
     };
   },
@@ -82,16 +87,26 @@ export default {
         formData.append("title", this.newsData.title);
         formData.append("content", this.newsData.content);
         formData.append("file", this.newsData.file);
-        this.$axios.post(`${this.$admin_api}add-news`, formData).then(res => {
-          if (res.data.success === true) {
-            this.$fire({
-              title: "Successfully",
-              text: "News added !!",
-              type: "success",
-              timer: 3000
-            });
-          }
-        });
+        this.$axios
+          .post(`${this.$admin_api}add-news`, formData, this.header)
+          .then(res => {
+            if (res.data.success === true) {
+              this.$fire({
+                title: "Successfully",
+                text: "News added !!",
+                type: "success",
+                timer: 3000
+              });
+            }
+          })
+          .catch(error => {
+            if (error) {
+              if (error.response.status == 401) {
+                localStorage.clear();
+                this.$router.push({ path: "/admin" });
+              }
+            }
+          });
       }
     }
   }

@@ -20,6 +20,9 @@ export default {
     return {
       teamId: this.$route.params.id
     };
+  },
+  mounted(){
+    window.scrollTo(0, 0);
   }
 };
 </script>
