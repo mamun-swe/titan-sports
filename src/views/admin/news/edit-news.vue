@@ -56,7 +56,8 @@ export default {
       this.$axios
         .patch(`${this.$admin_api}update-news`, this.news, this.header)
         .then(res => {
-          if (res.data.message == "success") {
+          console.log(res.status)
+          if (res.status == 200) {
             this.$axios
               .get(`${this.$admin_api}single-news/` + this.newsId, this.header)
               .then(res => {
