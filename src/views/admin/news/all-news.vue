@@ -131,7 +131,7 @@ export default {
       this.$axios
         .delete(`${this.$admin_api}remove-news/` + this.newsId, this.header)
         .then(res => {
-          if (res.data.success === true) {
+          if (res.status == 200) {
             this.$axios
               .get(`${this.$admin_api}get-news`, this.header)
               .then(res => {
