@@ -121,7 +121,7 @@
             <div class="embed-responsive embed-responsive-16by9">
               <iframe
                 class="embed-responsive-item"
-                src="https://www.youtube-nocookie.com/embed/URBy9t6e8rY"
+                :src="socialLinks.striming"
                 allowfullscreen
               ></iframe>
             </div>
@@ -151,6 +151,7 @@ export default {
       companies: [],
       fourNews: [],
       teams: [],
+      socialLinks: '',
       slickOptions: {
         slidesToShow: 4,
         slidesToScroll: 4,
@@ -201,6 +202,9 @@ export default {
     this.$axios.get(`${this.$user_api}nine-team`).then(res => {
       this.teams = res.data.teams;
       this.loader = false;
+    });
+    this.$axios.get(`${this.$user_api}social-links`).then(res => {
+      this.socialLinks = res.data.links[0];
     });
   },
   methods: {

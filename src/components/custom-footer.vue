@@ -16,12 +16,12 @@
           <router-link to="/sponsored">sponsored</router-link>
           <router-link to="/registration">registration</router-link>
         </div>
-        <div class="col-12 col-md-4 mb-3 mb-md-0">
+        <div class="col-12 col-md-4 mb-3 mb-md-0" v-if="socialLinks">
           <h6>Connect with us</h6>
-          <a target="_blank" href>facebook</a>
-          <a target="_blank" href>instagram</a>
-          <a target="_blank" href>discord</a>
-          <a target="_blank" href>youtube</a>
+          <a target="_blank" :href="socialLinks.facebook">facebook</a>
+          <a target="_blank" :href="socialLinks.instagram">instagram</a>
+          <a target="_blank" :href="socialLinks.discord">discord</a>
+          <a target="_blank" :href="socialLinks.youtube">youtube</a>
         </div>
       </div>
       <div class="row mt-4 py-2 dev-content">
@@ -40,7 +40,17 @@
 </template>
 <script>
 export default {
-  name: "custom-footer"
+  name: "custom-footer",
+  data() {
+    return {
+      socialLinks: ""
+    };
+  },
+  mounted() {
+    this.$axios.get(`${this.$user_api}social-links`).then(res => {
+      this.socialLinks = res.data.links[0];
+    });
+  }
 };
 </script>
 <style lang="scss" scoped>

@@ -1,17 +1,17 @@
 <template>
   <div class="custom-nav">
     <!-- Top nav -->
-    <div class="custom-top-nav text-center">
-      <a target="_blank" href>
+    <div class="custom-top-nav text-center" v-if="socialLinks">
+      <a target="_blank" :href="socialLinks.facebook">
         <i class="fab fa-facebook-square"></i>
       </a>
-      <a target="_blank" href>
+      <a target="_blank" :href="socialLinks.instagram">
         <i class="fab fa-instagram"></i>
       </a>
-      <a target="_blank" href>
+      <a target="_blank" :href="socialLinks.discord">
         <i class="fab fa-discord"></i>
       </a>
-      <a target="_blank" href>
+      <a target="_blank" :href="socialLinks.youtube">
         <i class="fab fa-youtube"></i>
       </a>
     </div>
@@ -68,7 +68,8 @@ export default {
   data() {
     return {
       bars: true,
-      close: false
+      close: false,
+      socialLinks: ''
     };
   },
   mounted() {
@@ -82,6 +83,10 @@ export default {
       }
     });
     this.$refs.mobileMenu.style.top = "-100%";
+    this.$axios.get(`${this.$user_api}social-links`)
+    .then(res => {
+      this.socialLinks = res.data.links[0]
+    })
   },
   methods: {
     openMenu() {
