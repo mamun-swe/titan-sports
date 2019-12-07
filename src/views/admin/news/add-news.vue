@@ -87,10 +87,11 @@ export default {
         formData.append("title", this.newsData.title);
         formData.append("content", this.newsData.content);
         formData.append("file", this.newsData.file);
+
         this.$axios
           .post(`${this.$admin_api}add-news`, formData, this.header)
           .then(res => {
-            if (res.status == 200) {
+            if (res.status === 200) {
               this.$fire({
                 title: "Successfully",
                 text: "News added !!",
