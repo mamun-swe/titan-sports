@@ -4,7 +4,12 @@
       <div class="row site-content">
         <div class="col-12 col-md-4 mb-3 mb-md-0">
           <h6>The Titan Esports</h6>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis sit ipsa perferendis veritatis molestias, distinctio nam nisi sapiente eligendi, iusto quod nihil quo architecto eveniet, labore accusantium.</p>
+          <p>
+            THE TiTAN ESPORTS is a Bangladeshi eSports organisation founded by "Tawsif Mahbub" in June 2019. Focused at first on mobile games. TiTAN ESPORTS has been able to dominate the mobile competitive scene and created thousands of fans around the world who constantly support our work.
+            The members of TiTAN ESPORTS shares a series of intrinsic and fundamental values: closeness, human quality, effort, competitiveness and talent. TiTAN ESPORTS includes more than 370 people who are deeply committed to the club and work day after day to improve and continue growing all together.
+            <br>
+            #titanproud
+          </p>
         </div>
         <div class="col-12 col-md-4 mb-3 mb-md-0 pl-md-5">
           <h6>Links</h6>
