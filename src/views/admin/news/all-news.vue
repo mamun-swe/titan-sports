@@ -5,7 +5,7 @@
         <div class="col-12 pt-3">
           <div class="d-flex">
             <div>
-              <h3>News</h3>
+              <h3>Events</h3>
             </div>
             <div class="ml-auto">
               <router-link to="/menu/add-news">
@@ -70,7 +70,7 @@
             <i class="fas fa-times" v-on:click="closeModal"></i>
           </div>
           <div class="card-body">
-            <h5>Are you sure want to delete this news ?</h5>
+            <h5>Are you sure want to delete this event ?</h5>
           </div>
           <div class="card-footer border-0">
             <button
@@ -131,7 +131,7 @@ export default {
       this.$axios
         .delete(`${this.$admin_api}remove-news/` + this.newsId, this.header)
         .then(res => {
-          if (res.status == 200) {
+          if (res.status == 204) {
             this.$axios
               .get(`${this.$admin_api}get-news`, this.header)
               .then(res => {

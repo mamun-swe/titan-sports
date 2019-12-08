@@ -127,7 +127,7 @@ export default {
       this.$axios
         .delete(`${this.$admin_api}remove-banner/` + this.bannerId, this.header)
         .then(res => {
-          if (res.data.success === true) {
+          if (res.status === 204) {
             this.$axios
               .get(`${this.$admin_api}get-banners`, this.header)
               .then(res => {

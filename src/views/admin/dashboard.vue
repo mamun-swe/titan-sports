@@ -2,7 +2,7 @@
   <div class="dashboard py-3">
     <div class="container">
       <div class="row">
-        <div class="col-6 col-md-3">
+        <div class="col-6 col-md-4">
           <div class="card">
             <div class="flex-center flex-column">
               <p class="mb-0">{{admins}}</p>
@@ -10,15 +10,8 @@
             </div>
           </div>
         </div>
-        <div class="col-6 col-md-3">
-          <div class="card">
-            <div class="flex-center flex-column">
-              <p class="mb-0">{{spnosore}}</p>
-              <h5 class="mb-0">Sponsore</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-md-3">
+
+        <div class="col-6 col-md-4">
           <div class="card">
             <div class="flex-center flex-column">
               <p class="mb-0">{{team}}</p>
@@ -26,17 +19,17 @@
             </div>
           </div>
         </div>
-        <div class="col-6 col-md-3">
+        <div class="col-6 col-md-4">
           <div class="card">
             <div class="flex-center flex-column">
               <p class="mb-0">{{news}}</p>
-              <h5 class="mb-0">News</h5>
+              <h5 class="mb-0">Events</h5>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row mt-4 social-activities" v-if="socialLinks">
+      <div class="row mt-4 social-activities">
         <div class="col-12">
           <h5>Live strim</h5>
           <form @submit.prevent="strimingUpdate">

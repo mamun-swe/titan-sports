@@ -127,7 +127,7 @@ export default {
       this.$axios
         .delete(`${this.$admin_api}remove-team/` + this.teamId, this.header)
         .then(res => {
-          if (res.data.success === true) {
+          if (res.status === 204) {
             this.$axios
               .get(`${this.$admin_api}get-team`, this.header)
               .then(res => {

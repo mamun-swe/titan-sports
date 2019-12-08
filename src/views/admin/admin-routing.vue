@@ -15,9 +15,9 @@
     <div class="side-menu border-right p-3" id="sideMenu">
       <router-link to="/menu/dashboard" class="btn btn-block">Dashboard</router-link>
       <router-link to="/menu/banners" class="btn btn-block">Banner</router-link>
-      <router-link to="/menu/sporser" class="btn btn-block">Sponsored</router-link>
+      <!-- <router-link to="/menu/sporser" class="btn btn-block">Sponsored</router-link> -->
       <router-link to="/menu/teams" class="btn btn-block">Team</router-link>
-      <router-link to="/menu/news" class="btn btn-block">News</router-link>
+      <router-link to="/menu/news" class="btn btn-block">Events</router-link>
     </div>
     <div class="break"></div>
     <router-view></router-view>

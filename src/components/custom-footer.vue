@@ -9,12 +9,12 @@
         <div class="col-12 col-md-4 mb-3 mb-md-0 pl-md-5">
           <h6>Links</h6>
           <router-link to="/home">home</router-link>
-          <router-link to="/about">about</router-link>
-          <router-link to="/team">team</router-link>
-          <router-link to="/news">news</router-link>
+          <router-link to="/news">events</router-link>
+          <router-link to="/team">teams</router-link>
           <router-link to="/contact">contact</router-link>
-          <router-link to="/sponsored">sponsored</router-link>
-          <router-link to="/registration">registration</router-link>
+          <router-link to="/about">TiTAN ESPORTS</router-link>
+          <!-- <router-link to="/sponsored">sponsored</router-link> -->
+          <!-- <router-link to="/registration">registration</router-link> -->
         </div>
         <div class="col-12 col-md-4 mb-3 mb-md-0" v-if="socialLinks">
           <h6>Connect with us</h6>

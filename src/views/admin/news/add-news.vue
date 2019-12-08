@@ -5,7 +5,7 @@
         <div class="col-12 pt-3">
           <div class="d-flex">
             <div>
-              <h3>Add News</h3>
+              <h3>Add Event</h3>
             </div>
             <div class="ml-auto">
               <router-link to="/menu/news">
@@ -21,7 +21,7 @@
               <input
                 type="text"
                 class="form-control shadow-none"
-                placeholder="News title"
+                placeholder="Event title"
                 v-model="newsData.title"
               />
             </div>
@@ -29,7 +29,7 @@
               <small class="text-danger" v-if="errors.content_err">{{errors.content_err}}</small>
               <textarea
                 class="form-control shadow-none"
-                placeholder="News content"
+                placeholder="Event content"
                 rows="5"
                 v-model="newsData.content"
               ></textarea>
@@ -76,7 +76,7 @@ export default {
     },
     addNews() {
       if (!this.newsData.title) {
-        this.errors.title_err = "News title is required*";
+        this.errors.title_err = "Event title is required*";
       } else if (!this.newsData.content) {
         this.errors.content_err = "Content is required*";
       } else if (!this.newsData.file) {

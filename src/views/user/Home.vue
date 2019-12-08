@@ -19,7 +19,7 @@
 
     <!-- Sponsored -->
 
-    <div class="sponsored-company my-5 py-2 shadow-sm">
+    <!-- <div class="sponsored-company my-5 py-2 shadow-sm">
       <div class="container">
         <div class="row">
           <div class="col-12">
@@ -33,7 +33,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Latest News -->
     <div class="latest-news">
@@ -43,7 +43,7 @@
             <div class="card">
               <div class="card-body">
                 <h6 class="mb-0 damn-color">
-                  <i class="fas fa-caret-right mr-3 danger-color"></i>Latest News
+                  <i class="fas fa-caret-right mr-3 danger-color"></i>Events
                 </h6>
               </div>
             </div>
@@ -78,7 +78,7 @@
             <div class="card">
               <div class="card-body">
                 <h6 class="mb-0 damn-color">
-                  <i class="fas fa-caret-right mr-3 danger-color"></i>Team
+                  <i class="fas fa-caret-right mr-3 danger-color"></i>Teams
                 </h6>
               </div>
             </div>
@@ -135,20 +135,20 @@
 <script>
 import Loader from './loader';
 import { Carousel3d, Slide } from "vue-carousel-3d";
-import Slick from "vue-slick";
+// import Slick from "vue-slick";
 export default {
   name: "home",
   components: {
     Loader,
     Carousel3d,
     Slide,
-    Slick
+    // Slick
   },
   data() {
     return {
       loader: null,
       slides: [],
-      companies: [],
+      // companies: [],
       fourNews: [],
       teams: [],
       socialLinks: '',
@@ -191,10 +191,6 @@ export default {
       this.slides = res.data.sliders;
       this.loader = false;
     });
-    this.$axios.get(`${this.$user_api}companies`).then(res => {
-      this.companies = res.data.companies;
-      this.loader = false;
-    });
     this.$axios.get(`${this.$user_api}four-news`).then(res => {
       this.fourNews = res.data.news;
       this.loader = false;
@@ -225,40 +221,40 @@ export default {
 </script>
 <style lang="scss" scoped>
 .home {
-  .sponsored-company {
-    border-bottom: 1px solid rgba(51, 49, 49, 0.349);
-    .col-12 {
-      height: 55px;
-      position: relative;
-      img {
-        height: 45px;
-        margin: auto;
-      }
-      i {
-        cursor: pointer;
-        transition: 0.3s;
-      }
-      i {
-        color: #f8780081;
-        transition: 0.3s;
-      }
-      i:hover {
-        color: #f87800;
-      }
-      .leftIcon {
-        position: absolute;
-        top: 15px;
-        left: 10px;
-        padding: 5px;
-      }
-      .rightIcon {
-        position: absolute;
-        top: 15px;
-        right: 10px;
-        padding: 5px;
-      }
-    }
-  }
+  // .sponsored-company {
+  //   border-bottom: 1px solid rgba(51, 49, 49, 0.349);
+  //   .col-12 {
+  //     height: 55px;
+  //     position: relative;
+  //     img {
+  //       height: 45px;
+  //       margin: auto;
+  //     }
+  //     i {
+  //       cursor: pointer;
+  //       transition: 0.3s;
+  //     }
+  //     i {
+  //       color: #f8780081;
+  //       transition: 0.3s;
+  //     }
+  //     i:hover {
+  //       color: #f87800;
+  //     }
+  //     .leftIcon {
+  //       position: absolute;
+  //       top: 15px;
+  //       left: 10px;
+  //       padding: 5px;
+  //     }
+  //     .rightIcon {
+  //       position: absolute;
+  //       top: 15px;
+  //       right: 10px;
+  //       padding: 5px;
+  //     }
+  //   }
+  // }
 
   // News
   .latest-news {

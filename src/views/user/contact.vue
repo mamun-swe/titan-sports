@@ -34,17 +34,6 @@
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <small class="error" v-if="errors.phone_err">{{errors.phone_err}}</small>
-                  <input
-                    type="text"
-                    class="form-control rounded-0 shadow-none"
-                    placeholder="Your phone"
-                    v-model="contact.phone"
-                  />
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="form-group">
                   <small class="error" v-if="errors.message_err">{{errors.message_err}}</small>
                   <textarea
                     class="form-control rounded-0 shadow-none"
@@ -71,6 +60,12 @@
         allowfullscreen
       ></iframe>
     </div>
+
+    <div class="custom-loading" v-if="loading">
+      <div class="flex-center flex-column">
+        <p class="mb-0">Sending please wait ...</p>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -78,16 +73,15 @@ export default {
   name: "contact",
   data() {
     return {
+      loading: null,
       contact: {
         name: "",
         email: "",
-        phone: "",
         message: ""
       },
       errors: {
         name_err: "",
         email_err: "",
-        phone_err: "",
         message_err: ""
       }
     };
@@ -100,12 +94,23 @@ export default {
         this.errors.email_err = "E-mail is required*";
       } else if (this.contact.email.indexOf("@gmail.com") < 0) {
         this.errors.email_err = "Address isn't valid*";
-      } else if (!this.contact.phone) {
-        this.errors.phone_err = "Phone is required*";
       } else if (!this.contact.message) {
         this.errors.message_err = "Message is required*";
       } else {
         this.errors = false;
+        this.loading = true;
+        this.$axios.post(`${this.$user_api}mail-sent`, this.contact)
+        .then(res => {
+          if(res.status === 200) {
+            this.loading = false;
+            this.$fire({
+              title: "Success",
+              text: "Your message successfully sent to TiTAN ESPORTS. !!",
+              type: "success",
+              timer: 3000
+            });
+          }
+        })
       }
     }
   },
@@ -152,6 +157,22 @@ export default {
     .error {
       color: #f87800;
       font-size: 16px;
+      font-family: "Kanit", sans-serif;
+    }
+  }
+  .custom-loading {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #092c63;
+    z-index: 99999;
+    transition: 0.6s;
+    p {
+      color: #ffffff;
+      font-size: 15px;
+      letter-spacing: 1px;
       font-family: "Kanit", sans-serif;
     }
   }

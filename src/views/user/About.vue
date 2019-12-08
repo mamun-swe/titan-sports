@@ -3,7 +3,7 @@
     <div class="container pt-4 pt-lg-5">
       <div class="row">
         <div class="col-12 col-lg-6">
-          <img src="../../assets/sliders/slider.jpg" class="img-fluid" />
+          <img src="../../assets/static/team-banner.jpg" class="img-fluid" />
         </div>
         <div class="col-12 col-lg-6 pt-3 pt-lg-0 text-right">
           <h3>TiTAN ESPORTS</h3>

@@ -20,9 +20,8 @@
       <div class="d-flex justify-content-center">
         <div class="pt-3">
           <router-link to="/home">Home</router-link>
-          <router-link to="/about">about</router-link>
-          <router-link to="/team">team</router-link>
-          <router-link to="/news">news</router-link>
+          <router-link to="/news">events</router-link>
+          <router-link to="/team">teams</router-link>
         </div>
         <div>
           <router-link to="/home">
@@ -30,9 +29,10 @@
           </router-link>
         </div>
         <div class="pt-3">
-          <router-link to="/registration">registration</router-link>
+          <!-- <router-link to="/registration">registration</router-link> -->
           <router-link to="/contact">contact</router-link>
-          <router-link to="/sponsored">sponsored</router-link>
+          <router-link to="/about">TiTAN ESPORTS</router-link>
+          <!-- <router-link to="/sponsored">sponsored</router-link> -->
         </div>
       </div>
     </div>
@@ -51,12 +51,12 @@
 
     <div class="mobile-menu d-block d-lg-none" ref="mobileMenu">
       <router-link to="/home">Home</router-link>
-      <router-link to="/about">about</router-link>
-      <router-link to="/team">team</router-link>
-      <router-link to="/news">news</router-link>
-      <router-link to="/registration">registration</router-link>
+      <router-link to="/news">events</router-link>
+      <router-link to="/team">teams</router-link>
       <router-link to="/contact">contact</router-link>
-      <router-link to="/sponsored">sponsored</router-link>
+      <router-link to="/about">TiTAN ESPORTS</router-link>
+      <!-- <router-link to="/registration">registration</router-link> -->
+      <!-- <router-link to="/sponsored">sponsored</router-link> -->
     </div>
 
     <div class="break"></div>
@@ -86,6 +86,7 @@ export default {
     this.$axios.get(`${this.$user_api}social-links`)
     .then(res => {
       this.socialLinks = res.data.links[0]
+      console.log(this.socialLinks)
     })
   },
   methods: {

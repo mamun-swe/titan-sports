@@ -6,7 +6,7 @@
       <img src="../../assets/static/news-banner.jpg" class="img-fluid" />
       <div class="banner-overlay">
         <div class="title">
-          <h1 class="mb-0">READ GAMER'S STORY</h1>
+          <h1 class="mb-0">EVENTS</h1>
         </div>
       </div>
     </div>

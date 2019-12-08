@@ -9,13 +9,11 @@ import News from '../views/user/news'
 import ReadNews from '../views/user/read-news'
 import TeamRegistration from '../views/user/team-registration'
 import Contact from '../views/user/contact'
-import Sponsored from '../views/user/sponsored'
 
 import AdminAuth from '../views/admin/auth'
 import AdminRouting from '../views/admin/admin-routing'
 import Dashboard from '../views/admin/dashboard'
 import Banner from '../views/admin/banner/banner'
-import SponsoredCompany from '../views/admin/sponsored/sponsored'
 import AllTeam from '../views/admin/team/all-team'
 import AddTeam from '../views/admin/team/add-team'
 import EditTeam from '../views/admin/team/edit-team'
@@ -41,8 +39,7 @@ const routes = [
       { path: 'news', component: News },
       { path: 'news/:id', component: ReadNews },
       { path: 'registration', component: TeamRegistration },
-      { path: 'contact', component: Contact },
-      { path: 'sponsored', component: Sponsored }
+      { path: 'contact', component: Contact }
     ]
   },
   { path: '/admin', component: AdminAuth },
@@ -60,7 +57,6 @@ const routes = [
       { path: '', redirect: '/menu/dashboard' },
       { path: 'dashboard', component: Dashboard },
       { path: 'banners', component: Banner },
-      { path: 'sporser', component: SponsoredCompany },
       { path: 'teams', component: AllTeam },
       { path: 'add-team', component: AddTeam },
       { path: 'edit-team/:id', component: EditTeam },

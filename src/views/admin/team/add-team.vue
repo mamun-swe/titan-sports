@@ -90,7 +90,7 @@ export default {
         this.$axios
           .post(`${this.$admin_api}add-team`, formData, this.header)
           .then(res => {
-            if (res.data.success === true) {
+            if (res.status === 200) {
               this.$fire({
                 title: "Successfully",
                 text: "Team added !!",
