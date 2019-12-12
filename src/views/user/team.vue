@@ -15,7 +15,12 @@
       <div class="row">
         <div class="col-12 col-sm-6 col-lg-4 team-column" v-for="(team, i) in teams" :key="i">
           <div class="card">
-            <img :src="team.file" class="card-img" />
+            <img
+              v-lazyload
+              src="../../assets/static/lazy.jpg"
+              :data-src="team.file"
+              class="card-img"
+            />
             <div class="custom-team-overlay">
               <div class="content text-center">
                 <button
@@ -32,10 +37,10 @@
   </div>
 </template>
 <script>
-import Loader from './loader';
+import Loader from "./loader";
 export default {
   name: "team",
-    components: {
+  components: {
     Loader
   },
   data() {

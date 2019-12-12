@@ -8,6 +8,8 @@ import VueSimpleAlert from "vue-simple-alert";
 import DatePicker from "v-calendar/lib/components/date-picker.umd";
 import axios from 'axios'
 import moment from 'moment'
+import VueTinyLazyloadImg from 'vue-tiny-lazyload-img'
+
 
 
 Vue.prototype.$axios = axios
@@ -21,6 +23,7 @@ Vue.filter("year", function (value) {
     return moment(String(value)).format("MMM Do YY")
   }
 });
+Vue.use(VueTinyLazyloadImg);
 
 
 

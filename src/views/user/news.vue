@@ -21,7 +21,12 @@
         >
           <div class="card">
             <div class="custom-header">
-              <img :src="news.file" class="card-img" />
+              <img
+                v-lazyload
+                src="../../assets/static/lazy.jpg"
+                :data-src="news.file"
+                class="card-img"
+              />
               <div class="custom-team-overlay"></div>
             </div>
             <div class="card-body">

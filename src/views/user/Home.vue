@@ -13,27 +13,9 @@
       v-if="slides.length"
     >
       <slide v-for="(slide, i) in slides" :index="i" :key="i">
-        <img :src="slide.file" class="img-fluid" />
+        <img v-lazyload src="../../assets/static/lazy.jpg" :data-src="slide.file" class="img-fluid" />
       </slide>
     </carousel-3d>
-
-    <!-- Sponsored -->
-
-    <!-- <div class="sponsored-company my-5 py-2 shadow-sm">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <slick ref="slick" :options="slickOptions" class="px-3 px-lg-5" v-if="companies.length">
-              <div class="text-center" v-for="company in companies" :key="company.id">
-                <img :src="company.file" class="img-fluid" />
-              </div>
-            </slick>
-            <i class="fas fa-chevron-left leftIcon" v-on:click="prev"></i>
-            <i class="fas fa-chevron-right rightIcon" v-on:click="next"></i>
-          </div>
-        </div>
-      </div>
-    </div> -->
 
     <!-- Latest News -->
     <div class="latest-news">
@@ -57,7 +39,12 @@
               :key="news.id"
               v-on:click="openNews(news)"
             >
-              <img :src="news.file" class="img-fluid" />
+              <img
+                v-lazyload
+                src="../../assets/static/lazy.jpg"
+                :data-src="news.file"
+                class="img-fluid"
+              />
               <div class="custom-overlay">
                 <div class="content">
                   <h5>{{news.title}}</h5>
@@ -88,7 +75,12 @@
         <div class="row">
           <div class="col-12 col-sm-6 col-lg-4 team-column" v-for="team in teams" :key="team.id">
             <div class="card">
-              <img :src="team.file" class="card-img" />
+              <img
+                v-lazyload
+                src="../../assets/static/lazy.jpg"
+                :data-src="team.file"
+                class="card-img"
+              />
               <div class="custom-team-overlay">
                 <div class="content text-center">
                   <button
@@ -119,11 +111,7 @@
           </div>
           <div class="col-12">
             <div class="embed-responsive embed-responsive-16by9">
-              <iframe
-                class="embed-responsive-item"
-                :src="socialLinks.striming"
-                allowfullscreen
-              ></iframe>
+              <iframe class="embed-responsive-item" :src="socialLinks.striming" allowfullscreen></iframe>
             </div>
           </div>
         </div>
@@ -133,25 +121,22 @@
 </template>
 
 <script>
-import Loader from './loader';
+import Loader from "./loader";
 import { Carousel3d, Slide } from "vue-carousel-3d";
-// import Slick from "vue-slick";
 export default {
   name: "home",
   components: {
     Loader,
     Carousel3d,
-    Slide,
-    // Slick
+    Slide
   },
   data() {
     return {
       loader: null,
       slides: [],
-      // companies: [],
       fourNews: [],
       teams: [],
-      socialLinks: '',
+      socialLinks: "",
       slickOptions: {
         slidesToShow: 4,
         slidesToScroll: 4,
@@ -221,40 +206,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .home {
-  // .sponsored-company {
-  //   border-bottom: 1px solid rgba(51, 49, 49, 0.349);
-  //   .col-12 {
-  //     height: 55px;
-  //     position: relative;
-  //     img {
-  //       height: 45px;
-  //       margin: auto;
-  //     }
-  //     i {
-  //       cursor: pointer;
-  //       transition: 0.3s;
-  //     }
-  //     i {
-  //       color: #f8780081;
-  //       transition: 0.3s;
-  //     }
-  //     i:hover {
-  //       color: #f87800;
-  //     }
-  //     .leftIcon {
-  //       position: absolute;
-  //       top: 15px;
-  //       left: 10px;
-  //       padding: 5px;
-  //     }
-  //     .rightIcon {
-  //       position: absolute;
-  //       top: 15px;
-  //       right: 10px;
-  //       padding: 5px;
-  //     }
-  //   }
-  // }
+  .carousel-3d-slider{
+    img{
+      min-height: 100%;
+    }
+  }
 
   // News
   .latest-news {
