@@ -13,8 +13,8 @@ import VueTinyLazyloadImg from 'vue-tiny-lazyload-img'
 
 
 Vue.prototype.$axios = axios
-Vue.prototype.$admin_api = "http://localhost:3000/api/admin/"
-Vue.prototype.$user_api = "http://localhost:3000/api/user/"
+Vue.prototype.$admin_api = "http://54.90.70.151:3000/api/admin/"
+Vue.prototype.$user_api = "http://54.90.70.151:3000/api/user/"
 Vue.use(VueSimpleAlert, { reverseButtons: true });
 Vue.component('date-picker', DatePicker)
 Vue.config.productionTip = false

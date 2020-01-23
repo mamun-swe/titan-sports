@@ -69,7 +69,7 @@ export default {
     return {
       bars: true,
       close: false,
-      socialLinks: ''
+      socialLinks: ""
     };
   },
   mounted() {
@@ -83,11 +83,9 @@ export default {
       }
     });
     this.$refs.mobileMenu.style.top = "-100%";
-    this.$axios.get(`${this.$user_api}social-links`)
-    .then(res => {
-      this.socialLinks = res.data.links[0]
-      console.log(this.socialLinks)
-    })
+    this.$axios.get(`${this.$user_api}social-links`).then(res => {
+      this.socialLinks = res.data.links[0];
+    });
   },
   methods: {
     openMenu() {
@@ -128,7 +126,7 @@ export default {
       .fa-discord:hover {
         color: #7289da;
       }
-      .fa-youtube:hover{
+      .fa-youtube:hover {
         color: #ff0000;
       }
     }
